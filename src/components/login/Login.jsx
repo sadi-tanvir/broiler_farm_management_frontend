@@ -1,5 +1,5 @@
-import React, { useState,useEffect, memo } from 'react'
-import { Link, useHistory } from "react-router-dom"
+import React, { useState, useEffect, memo } from 'react'
+import { Link, useNavigate } from "react-router-dom"
 import TextInputField from "../re-usable-component/TextInputField"
 import CheckBox from "../re-usable-component/CheckBox"
 import Button from '../re-usable-component/Button'
@@ -8,6 +8,7 @@ import { apiBaseUrl } from "../Utils/constant"
 import { setLoginUser } from "../../redux/actions/loginActions"
 import {
     SET_ADMIN,
+    ALL_USER_DATA,
     BUY_CHICKEN,
     DEATH_CHICKENS,
     BUY_FEED,
@@ -33,10 +34,10 @@ const Login = () => {
 
     // redux
     const dispatch = useDispatch()
-    const {  isAuthenticated } = useSelector(state => state.loginReducer)
+    const { isAuthenticated } = useSelector(state => state.loginReducer)
 
     // router
-    const history = useHistory()
+    const navigate = useNavigate()
 
     console.log(`Signin Component is running...`);
 
@@ -60,16 +61,19 @@ const Login = () => {
             // set admin authentication
             if (res.data.user.role === 'admin') {
                 dispatch({ type: SET_ADMIN })
+                dispatch({ type: ALL_USER_DATA, payload: res.data.users })
+                localStorage.setItem('users', JSON.stringify(res.data.users))
             }
 
             // data store to redux
             dispatch(setLoginUser(res.data.user))
-            dispatch({type:BUY_CHICKEN, payload: res.data.buyChicken})
-            dispatch({type:DEATH_CHICKENS, payload: res.data.deathChickens})
-            dispatch({type:BUY_FEED, payload: res.data.buyFeed})
-            dispatch({type:FINISH_FEED, payload: res.data.finishFeed})
-            dispatch({type:BUY_MEDICINE, payload: res.data.buyMedicine})
-            dispatch({type:OTHERS_COST, payload: res.data.othersCost})
+            dispatch({ type: BUY_CHICKEN, payload: res.data.buyChicken })
+            dispatch({ type: DEATH_CHICKENS, payload: res.data.deathChickens })
+            dispatch({ type: BUY_FEED, payload: res.data.buyFeed })
+            dispatch({ type: FINISH_FEED, payload: res.data.finishFeed })
+            dispatch({ type: BUY_MEDICINE, payload: res.data.buyMedicine })
+            dispatch({ type: OTHERS_COST, payload: res.data.othersCost })
+
 
             // data store to localStorage
             localStorage.setItem('user', JSON.stringify(res.data.user))
@@ -96,7 +100,7 @@ const Login = () => {
                 }
             }).then(res => {
                 if (res) {
-                    history.push('/')
+                    navigate('/')
                 }
             })
 
@@ -118,9 +122,9 @@ const Login = () => {
     // redirect to Home page
     useEffect(() => {
         if (isAuthenticated) {
-            history.push('/')
+            navigate('/')
         }
-    }, [isAuthenticated, history])
+    }, [isAuthenticated, navigate])
 
     return (
         <>

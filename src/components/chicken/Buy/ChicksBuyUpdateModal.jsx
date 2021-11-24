@@ -1,5 +1,4 @@
-import React, { memo, useState, useEffect} from 'react'
-import { useHistory } from "react-router-dom"
+import React, { memo, useState} from 'react'
 import TextInputField from "../../re-usable-component/TextInputField"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
@@ -17,7 +16,7 @@ const ChicksBuyUpdateModal = () => {
 
     // redux
     const dispatch = useDispatch()
-    const { buyChicken, isAuthenticated } = useSelector(state => state.loginReducer)
+    const { buyChicken } = useSelector(state => state.loginReducer)
 
     // state
     const [state, setState] = useState({
@@ -29,10 +28,6 @@ const ChicksBuyUpdateModal = () => {
         time: buyChicken.time,
         date: buyChicken.date
     })
-
-
-    // history
-    const history = useHistory()
 
 
     // handle change
@@ -66,13 +61,6 @@ const ChicksBuyUpdateModal = () => {
         })
     }
 
-
-    // redirect to login page
-    useEffect(() => {
-        if (!isAuthenticated) {
-            history.push('/login')
-        }
-    }, [isAuthenticated, history])
 
     return (
         <>

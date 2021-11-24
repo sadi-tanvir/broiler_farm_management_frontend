@@ -8,53 +8,53 @@ import React from 'react'
 const ProfileBody = () => {
     return (
         <>
-            <div class="container-fluid py-4">
-                <div class="row">
-                    <div class="col-12 col-xl-4">
-                        <div class="card h-100">
-                            <div class="card-header pb-0 p-3">
-                                <h6 class="mb-0">Platform Settings</h6>
+            <div className="container-fluid py-4">
+                <div className="row">
+                    <div className="col-12 col-xl-4">
+                        <div className="card h-100">
+                            <div className="card-header pb-0 p-3">
+                                <h6 className="mb-0">Platform Settings</h6>
                             </div>
-                            <div class="card-body p-3">
-                                <h6 class="text-uppercase text-body text-xs font-weight-bolder">Account</h6>
-                                <ul class="list-group">
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault" checked />
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault">Email me when someone follows me</label>
+                            <div className="card-body p-3">
+                                <h6 className="text-uppercase text-body text-xs font-weight-bolder">Account</h6>
+                                <ul className="list-group">
+                                    <li className="list-group-item border-0 px-0">
+                                        <div className="form-check form-switch ps-0">
+                                            <input className="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault" checked />
+                                            <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault">Email me when someone follows me</label>
                                         </div>
                                     </li>
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault1" />
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault1">Email me when someone answers on my post</label>
+                                    <li className="list-group-item border-0 px-0">
+                                        <div className="form-check form-switch ps-0">
+                                            <input className="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault1" />
+                                            <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault1">Email me when someone answers on my post</label>
                                         </div>
                                     </li>
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault2" checked />
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault2">Email me when someone mentions me</label>
+                                    <li className="list-group-item border-0 px-0">
+                                        <div className="form-check form-switch ps-0">
+                                            <input className="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault2" checked />
+                                            <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault2">Email me when someone mentions me</label>
                                         </div>
                                     </li>
                                 </ul>
-                                <h6 class="text-uppercase text-body text-xs font-weight-bolder mt-4">Application</h6>
-                                <ul class="list-group">
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault3" />
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault3">New launches and projects</label>
+                                <h6 className="text-uppercase text-body text-xs font-weight-bolder mt-4">Application</h6>
+                                <ul className="list-group">
+                                    <li className="list-group-item border-0 px-0">
+                                        <div className="form-check form-switch ps-0">
+                                            <input className="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault3" />
+                                            <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault3">New launches and projects</label>
                                         </div>
                                     </li>
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault4" checked />
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault4">Monthly product updates</label>
+                                    <li className="list-group-item border-0 px-0">
+                                        <div className="form-check form-switch ps-0">
+                                            <input className="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault4" checked />
+                                            <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault4">Monthly product updates</label>
                                         </div>
                                     </li>
-                                    <li class="list-group-item border-0 px-0 pb-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault5" />
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault5">Subscribe to newsletter</label>
+                                    <li className="list-group-item border-0 px-0 pb-0">
+                                        <div className="form-check form-switch ps-0">
+                                            <input className="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault5" />
+                                            <label className="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault5">Subscribe to newsletter</label>
                                         </div>
                                     </li>
                                 </ul>
@@ -65,40 +65,40 @@ const ProfileBody = () => {
 
 
 
-                    <div class="col-12 col-xl-4">
-                        <div class="card h-100">
-                            <div class="card-header pb-0 p-3">
-                                <div class="row">
-                                    <div class="col-md-8 d-flex align-items-center">
-                                        <h6 class="mb-0">Profile Information</h6>
+                    <div className="col-12 col-xl-4">
+                        <div className="card h-100">
+                            <div className="card-header pb-0 p-3">
+                                <div className="row">
+                                    <div className="col-md-8 d-flex align-items-center">
+                                        <h6 className="mb-0">Profile Information</h6>
                                     </div>
-                                    <div class="col-md-4 text-end">
+                                    <div className="col-md-4 text-end">
                                         <a href="javascript:;">
-                                            <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
+                                            <i className="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body p-3">
-                                <p class="text-sm">
+                            <div className="card-body p-3">
+                                <p className="text-sm">
                                     Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
                                 </p>
-                                <hr class="horizontal gray-light my-4" />
-                                <ul class="list-group">
-                                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; alecthompson@mail.com</li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
-                                    <li class="list-group-item border-0 ps-0 pb-0">
-                                        <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                                        <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                            <i class="fab fa-facebook fa-lg"></i>
+                                <hr className="horizontal gray-light my-4" />
+                                <ul className="list-group">
+                                    <li className="list-group-item border-0 ps-0 pt-0 text-sm"><strong className="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
+                                    <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
+                                    <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Email:</strong> &nbsp; alecthompson@mail.com</li>
+                                    <li className="list-group-item border-0 ps-0 text-sm"><strong className="text-dark">Location:</strong> &nbsp; USA</li>
+                                    <li className="list-group-item border-0 ps-0 pb-0">
+                                        <strong className="text-dark text-sm">Social:</strong> &nbsp;
+                                        <a className="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                                            <i className="fab fa-facebook fa-lg"></i>
                                         </a>
-                                        <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                            <i class="fab fa-twitter fa-lg"></i>
+                                        <a className="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                                            <i className="fab fa-twitter fa-lg"></i>
                                         </a>
-                                        <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                            <i class="fab fa-instagram fa-lg"></i>
+                                        <a className="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                                            <i className="fab fa-instagram fa-lg"></i>
                                         </a>
                                     </li>
                                 </ul>

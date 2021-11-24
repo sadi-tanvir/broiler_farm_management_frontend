@@ -1,11 +1,12 @@
 import React, { memo, useState } from 'react'
 import TextInputField from "../re-usable-component/TextInputField"
+import DatalistTextInput from "../re-usable-component/DatalistTextInput"
 import classes from "../../styles/TextInput.module.css"
 import Modal from '../re-usable-component/Modal'
 import axios from "axios"
 import { apiBaseUrl } from "../Utils/constant"
 import { BUY_MEDICINE } from "../../redux/actions/types"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const MedicineAddModal = () => {
@@ -21,6 +22,26 @@ const MedicineAddModal = () => {
 
     // redux
     const dispatch = useDispatch()
+    const { buyMedicine } = useSelector(state => state.loginReducer)
+
+    // medicine name sorting
+    const medicineNameArr = buyMedicine.map(medicine => {
+        return medicine.name
+    })
+    const medicinesName = [...new Set(medicineNameArr)]
+
+    // medicine group sorting
+    const medicineGroupArr = buyMedicine.map(medicine => {
+        return medicine.group
+    })
+    const medicinesGroup = [...new Set(medicineGroupArr)]
+
+    // medicine Compay sorting
+    const medicineCompanyArr = buyMedicine.map(medicine => {
+        return medicine.company
+    })
+    const medicinesCompay = [...new Set(medicineCompanyArr)]
+
 
 
     // handle change
@@ -60,30 +81,24 @@ const MedicineAddModal = () => {
                     btnText="Add Information"
                     btnColor="bg-gradient-info"
                 >
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Name"
-                        name="name"
-                        onChange={handleChange}
-                    />
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Group"
-                        name="group"
-                        onChange={handleChange}
-                    />
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Company"
-                        name="company"
-                        onChange={handleChange}
-                    />
+                    <DatalistTextInput onChange={handleChange} name="name" placeholder="Name" inpClass={classes.modalInput} >
+                        {
+                            medicinesName.map(name => <option value={name} />)
+                        }
+                    </DatalistTextInput>
+
+                    <DatalistTextInput onChange={handleChange} name="group" placeholder="Group" inpClass={classes.modalInput} >
+                        {
+                            medicinesGroup.map(group => <option value={group} />)
+                        }
+                    </DatalistTextInput>
+
+                    <DatalistTextInput onChange={handleChange} name="company" placeholder="Company" inpClass={classes.modalInput} >
+                        {
+                            medicinesCompay.map(company => <option value={company} />)
+                        }
+                    </DatalistTextInput>
+
                     <TextInputField
                         divClass="mb-3"
                         type="number"

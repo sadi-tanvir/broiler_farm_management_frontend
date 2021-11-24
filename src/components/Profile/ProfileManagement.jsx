@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import UserInformation from "./UserInformation"
 import RightMenu from "./RightMenu"
 import ChangeUserInfoModal from './changeUserInfo/ChangeUserInfoModal'
@@ -16,7 +16,7 @@ const ProfileManagement = () => {
     const { user, isAuthenticated } = useSelector(state => state.loginReducer)
 
     // history
-    const history = useHistory()
+    const navigate = useNavigate()
 
     // cover photo url
     const coverPic = `${apiBaseUrl}/cover-pic/${user.cover_pic}`
@@ -25,33 +25,33 @@ const ProfileManagement = () => {
     // redirect to login page
     useEffect(() => {
         if (!isAuthenticated) {
-            history.push('/login')
+            navigate('/login')
         }
-    }, [isAuthenticated, history])
+    }, [isAuthenticated, navigate])
 
     return (
         <>
-            <div class="container-fluid">
-                <div class="page-header min-height-300 border-radius-xl mt-4" style={{ backgroundImage: `url(${coverPic})`, backgroundPositionY: '50%' }}>
-                    <span class="mask bg-gradient-primary opacity-6"></span>
+            <div className="container-fluid">
+                <div className="page-header min-height-300 border-radius-xl mt-4" style={{ backgroundImage: `url(${coverPic})`, backgroundPositionY: '50%' }}>
+                    <span className="mask bg-gradient-primary opacity-6"></span>
                 </div>
-                <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
-                    <div class="row gx-4">
-                        <div class="col-auto">
-                            <div class="avatar avatar-xl position-relative">
+                <div className="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
+                    <div className="row gx-4">
+                        <div className="col-auto">
+                            <div className="avatar avatar-xl position-relative">
                                 <img
                                     src={`${apiBaseUrl}/profile-pic/${user.profile_pic}`}
                                     alt="profile_image"
-                                    class="w-100 border-radius-lg shadow-sm"
+                                    className="w-100 border-radius-lg shadow-sm"
                                 />
                             </div>
                         </div>
-                        <div class="col-auto my-auto">
-                            <div class="h-100">
-                                <h5 class="mb-1">
+                        <div className="col-auto my-auto">
+                            <div className="h-100">
+                                <h5 className="mb-1">
                                     {user.name}
                                 </h5>
-                                <p class="mb-0 font-weight-bold text-sm">
+                                <p className="mb-0 font-weight-bold text-sm">
                                     {user.email}
                                 </p>
                             </div>

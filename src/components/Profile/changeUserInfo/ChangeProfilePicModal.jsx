@@ -1,6 +1,5 @@
 import React, { memo, useState } from 'react'
 import InputFileUpload from "../../re-usable-component/InputFileUpload"
-import DatalistTextInput from "../../re-usable-component/DatalistTextInput"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
 import axios from "axios"
@@ -14,7 +13,6 @@ const ChangeProfilePicModal = () => {
 
     // redux
     const dispatch = useDispatch()
-    const { user } = useSelector(state => state.loginReducer)
 
     // state
     const [profile, setProfile] = useState(null)
@@ -61,10 +59,6 @@ const ChangeProfilePicModal = () => {
                         inpClass={classes.modalInput}
                         onChange={handleChange}
                     />
-
-                    {/* <div class="form-group mt-3">
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" />
-                    </div> */}
                 </Modal>
             </form>
         </>

@@ -5,7 +5,7 @@ import Modal from '../../re-usable-component/Modal'
 import axios from "axios"
 import { apiBaseUrl } from "../../Utils/constant"
 import { BUY_CHICKEN } from "../../../redux/actions/types"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 
 
@@ -13,7 +13,6 @@ const ChiksBuyAddModal = () => {
 
     // redux
     const dispatch = useDispatch()
-    const { buyChicken } = useSelector(state => state.loginReducer)
 
     // state
     const [chicken, setChicken] = useState({

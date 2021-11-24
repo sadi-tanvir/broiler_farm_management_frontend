@@ -1,11 +1,10 @@
 import React, { memo, useState } from 'react'
 import InputFileUpload from "../../re-usable-component/InputFileUpload"
-import DatalistTextInput from "../../re-usable-component/DatalistTextInput"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
 import axios from "axios"
 import { apiBaseUrl } from "../../Utils/constant"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { setLoginUser } from "../../../redux/actions/loginActions"
 
 
@@ -59,10 +58,6 @@ const ChangeCoverPicModal = () => {
                         inpClass={classes.modalInput}
                         onChange={handleChange}
                     />
-
-                    {/* <div class="form-group mt-3">
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1" />
-                    </div> */}
                 </Modal>
             </form>
         </>

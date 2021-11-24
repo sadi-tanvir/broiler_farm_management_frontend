@@ -3,10 +3,10 @@ import React from 'react'
 
 
 
-const DatalistTextInput = ({ children, labelText, inpClass, placeholder, name, onChange, value, disabled }) => {
+const DatalistTextInput = ({ children, labelText, inpClass, placeholder, name, onChange, value, disabled, ...rest }) => {
     return (
         <>
-            {labelText && <label for="exampleDataList" class="form-label">{labelText}</label>}
+            {labelText && <label for="exampleDataList" className="form-label">{labelText}</label>}
             <input
                 className={`form-control mb-3 ${inpClass}`}
                 list="datalistOptions"
@@ -15,6 +15,8 @@ const DatalistTextInput = ({ children, labelText, inpClass, placeholder, name, o
                 onChange={onChange}
                 value={value}
                 disabled={disabled}
+                rest
+                autoComplete={false}
             />
             <datalist id="datalistOptions">
                 {children}

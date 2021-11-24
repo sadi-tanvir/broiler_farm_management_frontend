@@ -4,7 +4,7 @@ import classes2 from "../../styles/Color.module.css"
 
 
 
-const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6, onChange }) => {
+const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6, onChange, search }) => {
     return (
         <>
             {/* <div className="container-fluid py-4"> */}
@@ -16,15 +16,17 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
                             <h5 className={`text-gradient d-sm-none ${classes2.headerColor}`}>{header}</h5>
 
                             <div className={`ms-md-auto pe-md-3 d-flex align-items-center ${classes.searchInp}`}>
-                                <div className="input-group">
-                                    <input
-                                        onChange={onChange}
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="search"
-                                    />
-                                    <span className="input-group-text text-body"><i className="fas fa-search" aria-hidden="true"></i></span>
-                                </div>
+                                {search ? null :
+                                    <div className="input-group">
+                                        <input
+                                            onChange={onChange}
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="search"
+                                        />
+                                        <span className="input-group-text text-body"><i className="fas fa-search" aria-hidden="true"></i></span>
+                                    </div>
+                                }
                             </div>
                         </div>
                         <div className="card-body px-0 pt-0 pb-2">

@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import classes from "../../../styles/Color.module.css"
 import { SIDEBAR_OPEN, SIDEBAR_COLLAPSE, LOGOUT_USER } from "../../../redux/actions/types"
 import { useDispatch, useSelector } from "react-redux"
@@ -19,7 +19,7 @@ const SideBar = () => {
     // const { } = useSelector(state => state.adminReducer)
 
     // router
-    const history = useHistory()
+    const navigate = useNavigate()
 
     // sidebar show & collupse
     const sidebarView = () => {
@@ -42,7 +42,7 @@ const SideBar = () => {
         // auth header return false
         setAuthToken(false)
 
-        history.push('/login')
+        navigate('/login')
 
     }
     return (
@@ -120,12 +120,12 @@ const SideBar = () => {
                             </li> : null}
                         {isAuthenticated ?
                             <li className="nav-item">
-                                <a className="nav-link  " href="../pages/rtl.html">
+                                <Link className="nav-link  " to="/others-expense">
                                     <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                         <SvgRTL />
                                     </div>
-                                    <span className="nav-link-text ms-1">RTL</span>
-                                </a>
+                                    <span className="nav-link-text ms-1">Others Expenses</span>
+                                </Link>
                             </li> : null}
                         <li className="nav-item mt-3">
                             <h6 className="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
@@ -154,7 +154,7 @@ const SideBar = () => {
                                 <Link className="nav-link  " to="/register">
                                     <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                                         {/* <SvgSignup /> */}
-                                        <i class="fas fa-user-plus text-dark"></i>
+                                        <i className="fas fa-user-plus text-dark"></i>
                                     </div>
                                     <span className="nav-link-text ms-1">Sign Up</span>
                                 </Link>

@@ -1,25 +1,41 @@
 import React, { memo, useState } from 'react'
 import TextInputField from "../../re-usable-component/TextInputField"
+import DatalistTextInput from "../../re-usable-component/DatalistTextInput"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
-import SelectOptionInput from "../../re-usable-component/SelectOptionInput"
 import axios from "axios"
 import { apiBaseUrl } from "../../Utils/constant"
 import { BUY_FEED } from "../../../redux/actions/types"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const FeedBuyAddModal = () => {
 
     // redux
     const dispatch = useDispatch()
+    const { buyFeed } = useSelector(state => state.loginReducer)
 
+    // state
     const [addFeed, setAddFeed] = useState({
         name: "",
         category: "STARTER",
         bag: "",
         price: "",
     })
+
+    // feed Name sorting
+    const feedNameArr = buyFeed.map(feed => {
+        return feed.name
+    })
+    const feedName = [...new Set(feedNameArr)]
+
+    // feed category sorting
+    const feedCategoryArr = buyFeed.map(feed => {
+        return feed.category
+    })
+    const feedCategories = [...new Set(feedCategoryArr)]
+    console.log(feedCategories);
+
 
     // handle Change
     const handleChange = (event) => {
@@ -61,24 +77,21 @@ const FeedBuyAddModal = () => {
             <form onSubmit={addFeedInfo} roles="form text-left">
                 <Modal
                     modalId="addFeed"
-                    modalHeader="Add Chicken Information"
+                    modalHeader="Add Feed Information"
                     btnText="Add Information"
                     btnColor="bg-gradient-info"
                 >
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Company Name"
-                        name="name"
-                        onChange={handleChange}
-                        value={addFeed.name}
-                    />
+                    <DatalistTextInput onChange={handleChange} name="name" value={addFeed.name} placeholder="Company Name" inpClass={classes.modalInput} >
+                        {
+                            feedName.map(name => <option value={name} />)
+                        }
+                    </DatalistTextInput>
 
-                    <SelectOptionInput value={addFeed.category} name="category" onChange={handleChange} divClass="mb-3" inpClass={classes.modalInput}>
-                        <option value="STARTER">STARTER</option>
-                        <option value="GROWER">GROWER</option>
-                    </SelectOptionInput>
+                    <DatalistTextInput onChange={handleChange} name="category" placeholder="Feed Categories" inpClass={classes.modalInput} >
+                        {
+                            feedCategories.map(category => <option value={category} />)
+                        }
+                    </DatalistTextInput>
 
                     <TextInputField
                         divClass="mb-3"

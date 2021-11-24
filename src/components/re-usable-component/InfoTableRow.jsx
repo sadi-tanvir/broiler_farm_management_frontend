@@ -15,7 +15,7 @@ const InfoTableRow = (props) => {
                 <td>
                     <div className="d-flex px-2 py-1">
                         <div>
-                            <img src={img} className="avatar avatar-sm me-3" alt="user1" />
+                            {img && <img src={img} className="avatar avatar-sm me-3" alt="user1" />}
                         </div>
                         <div className="d-flex flex-column justify-content-center">
                             <h6 className="mb-0 text-sm">{col1}</h6>

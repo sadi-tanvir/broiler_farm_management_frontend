@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import InfoTableHeader from '../../re-usable-component/InfoTableHeader'
 import classes from "../../../styles/Color.module.css"
 import InfoTableRow from "../../re-usable-component/InfoTableRow"
@@ -36,7 +36,7 @@ const FeedBuyManagement = () => {
     const [feedOutput, setFeedOutput] = useState([])
 
     // history
-    const history = useHistory()
+    const navigate = useNavigate()
 
     // total feed bag
     const feedBagCountArr = buyFeed.map(feed => {
@@ -124,9 +124,9 @@ const FeedBuyManagement = () => {
     // redirect to login page
     useEffect(() => {
         if (!isAuthenticated) {
-            history.push('/login')
+            navigate('/login')
         }
-    }, [isAuthenticated, history])
+    }, [isAuthenticated, navigate])
 
     return (
         <>
@@ -134,7 +134,7 @@ const FeedBuyManagement = () => {
                 <div className="row mb-4 mb-sm-0">
                     <div className="col-md-6">
                         <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addFeed">
-                            <i class="fas fa-plus me-2"></i>
+                            <i className="fas fa-plus me-2"></i>
                             Add Item
                         </Button>
                         <FeedBuyAddModal />

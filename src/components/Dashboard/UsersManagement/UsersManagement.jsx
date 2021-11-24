@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux"
 const UsersManagement = () => {
     // redux
     const dispatch = useDispatch()
-    const { allUser } = useSelector(state => state.loginReducer)
+    const { users } = useSelector(state => state.loginReducer)
 
 
     // state
@@ -30,7 +30,7 @@ const UsersManagement = () => {
                 axios.delete(`${apiBaseUrl}/all-user-delete/${userId}`)
                     .then(res => {
                         dispatch({ type: ALL_USER_DATA, payload: res.data.users })
-                        localStorage.setItem('allUser', JSON.stringify(res.data.users))
+                        localStorage.setItem('users', JSON.stringify(res.data.users))
                     }).catch(error => {
                         console.log(error.response);
                     })
@@ -38,22 +38,23 @@ const UsersManagement = () => {
         })
     }
 
-    // get all user data from server
-    useEffect(() => {
-        axios.get(`${apiBaseUrl}/all-user-data`)
-            .then(res => {
-                // update value to redux & localStorage
-                dispatch({ type: ALL_USER_DATA, payload: res.data.users })
-                localStorage.setItem('allUser', JSON.stringify(res.data.users))
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }, [])
+    // // get all user data from server
+    // useEffect(() => {
+    //     axios.get(`${apiBaseUrl}/all-user-data`)
+    //         .then(res => {
+    //             console.log(res);
+    //             // update value to redux & localStorage
+    //             dispatch({ type: ALL_USER_DATA, payload: res.data.users })
+    //             localStorage.setItem('allUser', JSON.stringify(res.data.users))
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }, [])
 
 
     useEffect(() => {
-        const filterVal = allUser.filter(user => {
+        const filterVal = users.filter(user => {
             if (searchUserInfo === '') {
                 return user
             } else if (
@@ -68,7 +69,7 @@ const UsersManagement = () => {
         })
 
         setOutputUserInfo(filterVal)
-    }, [searchUserInfo,allUser])
+    }, [searchUserInfo, users])
 
     // const [searchUserInfo, setSearchUserInfo] = useState("")
     // const [outputUserInfo, setOutputUserInfo] = useState([])
@@ -91,7 +92,7 @@ const UsersManagement = () => {
                         return (
                             <>
                                 <InfoTableRow
-                                    img={feedImg}
+                                    img={`${apiBaseUrl}/profile-pic/${user.profile_pic}`}
                                     col1={user.name}
                                     col1_2={user.email}
                                     col2={user.phone}

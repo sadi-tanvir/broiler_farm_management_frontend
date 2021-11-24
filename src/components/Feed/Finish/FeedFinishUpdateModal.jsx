@@ -1,11 +1,9 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import TextInputField from "../../re-usable-component/TextInputField"
 import DatalistTextInput from "../../re-usable-component/DatalistTextInput"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
 import { useSelector, useDispatch } from "react-redux"
-import axios from "axios"
-import { apiBaseUrl } from "../../Utils/constant"
 import {
     FEED_FINISH_UPDATE_ID,
     FEED_FINISH_UPDATE_ID_2,
@@ -22,8 +20,21 @@ const FeedFinishUpdateModal = ({ FeedFinishUpdate, modalId }) => {
 
     // redux
     const dispatch = useDispatch()
-    const {  _id, id2, name, category, bag, date } = useSelector(state => state.feedFinishReducer)
+    const { _id, id2, name, category, bag, date } = useSelector(state => state.feedFinishReducer)
+    const { buyFeed } = useSelector(state => state.loginReducer)
 
+
+    // feed Name sorting
+    const feedNameArr = buyFeed.map(feed => {
+        return feed.name
+    })
+    const feedName = [...new Set(feedNameArr)]
+
+    // feed category sorting
+    const feedCategoryArr = buyFeed.map(feed => {
+        return feed.category
+    })
+    const feedCategories = [...new Set(feedCategoryArr)]
 
 
     return (
@@ -55,18 +66,17 @@ const FeedFinishUpdateModal = ({ FeedFinishUpdate, modalId }) => {
                         value={id2}
                         disabled={true}
                     />
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="name"
-                        name="name"
-                        value={name}
-                        onChange={(e) => dispatch({ type: FEED_FINISH_UPDATE_NAME, payload: e.target.value })}
-                    />
+                    
+                    <DatalistTextInput onChange={(e) => dispatch({ type: FEED_FINISH_UPDATE_NAME, payload: e.target.value })} name="name" value={name} placeholder="Company Name" inpClass={classes.modalInput} >
+                        {
+                            feedName.map(name => <option value={name} />)
+                        }
+                    </DatalistTextInput>
+
                     <DatalistTextInput onChange={(e) => dispatch({ type: FEED_FINISH_UPDATE_CATEGORY, payload: e.target.value })} name="catogory" value={category} placeholder="Category" inpClass={classes.modalInput} >
-                        <option value="STARTER" />
-                        <option value="GROWER" />
+                        {
+                            feedCategories.map(category => <option value={category} />)
+                        }
                     </DatalistTextInput>
                     <TextInputField
                         divClass="mb-3"

@@ -6,7 +6,7 @@ import Modal from '../../re-usable-component/Modal'
 import axios from "axios"
 import { apiBaseUrl } from "../../Utils/constant"
 import { FINISH_FEED } from "../../../redux/actions/types"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
 
@@ -14,6 +14,7 @@ const FeedFinishAddModal = () => {
 
     // redux
     const dispatch = useDispatch()
+    const { buyFeed } = useSelector(state => state.loginReducer)
 
     // state
     const [finishFeed, setFinishFeed] = useState({
@@ -21,6 +22,19 @@ const FeedFinishAddModal = () => {
         category: "STARTER",
         bag: ""
     })
+
+    // feed Name sorting
+    const feedNameArr = buyFeed.map(feed => {
+        return feed.name
+    })
+    const feedName = [...new Set(feedNameArr)]
+
+    // feed category sorting
+    const feedCategoryArr = buyFeed.map(feed => {
+        return feed.category
+    })
+    const feedCategories = [...new Set(feedCategoryArr)]
+
 
 
     // handle change
@@ -61,19 +75,17 @@ const FeedFinishAddModal = () => {
                     btnText="Add Information"
                     btnColor="bg-gradient-info"
                 >
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Company Name"
-                        name="name"
-                        onChange={handleChange}
-                        value={finishFeed.name}
-                    />
 
-                    <DatalistTextInput onChange={handleChange} name="category" value={finishFeed.category} placeholder="Reason of Death" inpClass={classes.modalInput} >
-                        <option value="STARTER" />
-                        <option value="GROWER" />
+                    <DatalistTextInput onChange={handleChange} name="name" value={finishFeed.name} placeholder="Company Name" inpClass={classes.modalInput} autoComplete="off" >
+                        {
+                            feedName.map(name => <option value={name} />)
+                        }
+                    </DatalistTextInput>
+
+                    <DatalistTextInput onChange={handleChange} name="category" placeholder="Category" inpClass={classes.modalInput} >
+                        {
+                            feedCategories.map(category => <option value={category} />)
+                        }
                     </DatalistTextInput>
 
                     <TextInputField

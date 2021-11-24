@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Layout from "./components/Layout/Layout"
 import Dashboard from './components/Dashboard/Dashboard'
 import Register from "./components/register/Register"
@@ -11,6 +11,7 @@ import ChicksBuyManagement from "./components/chicken/Buy/ChicksBuyManagement"
 import ChicksDeathManagement from "./components/chicken/Death/ChicksDeathManagement"
 import { useDispatch } from "react-redux"
 import { setLoginUser } from "./redux/actions/loginActions"
+import OthersExpenseManagement from "./components/OthersExpense/OthersExpenseManagement"
 import {
   SET_ADMIN,
   BUY_CHICKEN,
@@ -34,7 +35,7 @@ const App = () => {
   if (localStorage.user && localStorage.token) {
     if (localStorage.role === "admin") {
       dispatch({ type: SET_ADMIN })
-      dispatch({ type: ALL_USER_DATA, payload: JSON.parse(localStorage.allUser) })
+      dispatch({ type: ALL_USER_DATA, payload: JSON.parse(localStorage.users) })
     }
     dispatch(setLoginUser(JSON.parse(localStorage.user)))
     dispatch({ type: BUY_CHICKEN, payload: JSON.parse(localStorage.buyChicken) })
@@ -54,15 +55,19 @@ const App = () => {
     <>
       <Router>
         <Layout>
-          <Route exact path="/" render={() => <Dashboard />} />
-          <Route path="/register" render={() => <Register />} />
-          <Route path="/login" render={() => <Login />} />
-          <Route path="/medicine" render={() => <MedicineManagement />} />
-          <Route path="/feed-buy" render={() => <FeedBuyManagement />} />
-          <Route path="/feed-finish" render={() => <FeedFinishManagement />} />
-          <Route path="/chicken-buy" render={() => <ChicksBuyManagement />} />
-          <Route path="/chicken-death" render={() => <ChicksDeathManagement />} />
-          <Route path="/profile" render={() => <ProfileManagement />} />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/medicine" element={<MedicineManagement />} />
+            <Route path="/feed-buy" element={<FeedBuyManagement />} />
+            <Route path="/feed-finish" element={<FeedFinishManagement />} />
+            <Route path="/chicken-buy" element={<ChicksBuyManagement />} />
+            <Route path="/chicken-death" element={<ChicksDeathManagement />} />
+            <Route path="/profile" element={<ProfileManagement />} />
+            <Route path="/others-expense" element={<OthersExpenseManagement />} />
+            {/* <Route path="/*" element={<ErrorPage />} /> it will have to be created */}
+          </Routes>
         </Layout>
       </Router>
     </>

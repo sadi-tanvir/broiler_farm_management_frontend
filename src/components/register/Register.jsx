@@ -1,5 +1,5 @@
 import React, { useState,useEffect, memo } from 'react'
-import { Link, useHistory } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import SignUpIcon from "./SignUpIcon"
 import TextInputField from "../re-usable-component/TextInputField"
 import CheckBox from "../re-usable-component/CheckBox"
@@ -26,7 +26,7 @@ const Register = () => {
     const {  isAuthenticated } = useSelector(state => state.loginReducer)
 
     // route
-    const history = useHistory()
+    const navigate = useNavigate()
 
 
     // handle change
@@ -59,7 +59,7 @@ const Register = () => {
                 }
             }).then(() => {
                 // Redirect to signin page
-                history.push('/login')
+                navigate('/login')
             })
 
 
@@ -81,9 +81,9 @@ const Register = () => {
     // redirect to Home page
     useEffect(() => {
         if (isAuthenticated) {
-            history.push('/')
+            navigate('/')
         }
-    }, [isAuthenticated, history])
+    }, [isAuthenticated, navigate])
 
     return (
         <>
