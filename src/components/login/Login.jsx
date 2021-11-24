@@ -14,7 +14,6 @@ import {
     BUY_FEED,
     FINISH_FEED,
     BUY_MEDICINE,
-    OTHERS_COST,
 } from "../../redux/actions/types"
 import { useSelector, useDispatch } from "react-redux"
 import Swal from "sweetalert2"
@@ -72,7 +71,6 @@ const Login = () => {
             dispatch({ type: BUY_FEED, payload: res.data.buyFeed })
             dispatch({ type: FINISH_FEED, payload: res.data.finishFeed })
             dispatch({ type: BUY_MEDICINE, payload: res.data.buyMedicine })
-            dispatch({ type: OTHERS_COST, payload: res.data.othersCost })
 
 
             // data store to localStorage
@@ -82,7 +80,6 @@ const Login = () => {
             localStorage.setItem('buyFeed', JSON.stringify(res.data.buyFeed))
             localStorage.setItem('finishFeed', JSON.stringify(res.data.finishFeed))
             localStorage.setItem('buyMedicine', JSON.stringify(res.data.buyMedicine))
-            localStorage.setItem('othersCost', JSON.stringify(res.data.othersCost))
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('role', res.data.role)
 

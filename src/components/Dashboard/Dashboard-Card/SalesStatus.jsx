@@ -1,6 +1,12 @@
 import React, { useState, useMemo, memo } from 'react'
+import { useSelector } from "react-redux"
+
 
 const SalesStatus = () => {
+
+    // redux
+    const { buyChicken } = useSelector(state => state.loginReducer)
+
     // state
     const [saleTime, setTime] = useState({
         days: "",
@@ -15,7 +21,7 @@ const SalesStatus = () => {
     useMemo(() => {
         return (
             setInterval(() => {
-                const dest = new Date("12/12/2021 7:00:00").getTime()
+                const dest = new Date(buyChicken.salesDate).getTime()
                 const now = new Date().getTime()
                 const diff = dest - now
 

@@ -4,7 +4,7 @@ import classes2 from "../../styles/Color.module.css"
 
 
 
-const OverView = ({ children, childrenDivClass, overviewHeader }) => {
+const OverView = ({ children, childrenDivClass, overviewHeader, totalExpense }) => {
 
     return (
         <>
@@ -16,6 +16,7 @@ const OverView = ({ children, childrenDivClass, overviewHeader }) => {
                     <div className={`timeline timeline-one-side ${childrenDivClass}`}>
                         {children}
                     </div>
+                    {totalExpense && <h4 className={`${classes.overviewHeader} ${classes2.iconColor} text-gradient`} style={{marginLeft: 20}}>{totalExpense}</h4>}
                 </div>
             </div>
         </>

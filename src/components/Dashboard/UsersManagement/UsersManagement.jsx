@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import InfoTableHeader from "../../re-usable-component/InfoTableHeader"
 import InfoTableRow from "../../re-usable-component/InfoTableRow"
-import feedImg from "../../image/Feed.jpg"
 import UserUpdateModal from "./UserUpdateModal"
 import axios from "axios"
 import Swal from "sweetalert2"
@@ -38,19 +37,6 @@ const UsersManagement = () => {
         })
     }
 
-    // // get all user data from server
-    // useEffect(() => {
-    //     axios.get(`${apiBaseUrl}/all-user-data`)
-    //         .then(res => {
-    //             console.log(res);
-    //             // update value to redux & localStorage
-    //             dispatch({ type: ALL_USER_DATA, payload: res.data.users })
-    //             localStorage.setItem('allUser', JSON.stringify(res.data.users))
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // }, [])
 
 
     useEffect(() => {

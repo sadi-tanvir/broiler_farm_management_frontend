@@ -1,12 +1,13 @@
 import React, { memo } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import classes from "../../../styles/Color.module.css"
+import classes2 from "../../../styles/Nav.module.css"
 import { SIDEBAR_OPEN, SIDEBAR_COLLAPSE, LOGOUT_USER } from "../../../redux/actions/types"
 import { useDispatch, useSelector } from "react-redux"
 import setAuthToken from "../../Utils/setAuthToken"
-import { SvgDashboard, SvgFeed, SvgMedicine, SvgChicken, SvgRTL, SvgProfile, SvgSignin, SvgSignup } from "./SvgLink"
-// img url
-const img_1 = `./assets/img/curved-images/white-curved.jpeg`
+import { SvgDashboard, SvgFeed, SvgMedicine, SvgChicken, SvgProfile } from "./SvgLink"
+
+
 
 
 
@@ -15,8 +16,7 @@ const SideBar = () => {
     // redux
     const dispatch = useDispatch()
     const { sidebar } = useSelector(state => state.othersReducer)
-    const { isAuthenticated, isAdmin } = useSelector(state => state.loginReducer)
-    // const { } = useSelector(state => state.adminReducer)
+    const { isAuthenticated } = useSelector(state => state.loginReducer)
 
     // router
     const navigate = useNavigate()
@@ -57,8 +57,11 @@ const SideBar = () => {
                         </div>
                     </i>
                     <Link className="navbar-brand m-0" to="#">
-                        <img src="./assets/img/logo-ct.png" className="navbar-brand-img h-100" alt="main_logo" />
-                        <span className="ms-1 font-weight-bold">Soft UI Dashboard</span>
+                        <h6 className="font-weight-bolder mb-0 d-flex flex-row justify-content-center mt-1">
+                            {/* <i class="fab fa-asymmetrik"></i> */}
+                            <i class={`fab fa-asymmetrik text-danger me-2 ${classes2.sideLogoIncon}`}></i>
+                            <span className={`text-info text-uppercase ${classes2.sideLogoText}`}>Tanvir Hossain Sadi</span>
+                        </h6>
                     </Link>
                 </div>
                 <hr className="horizontal dark mt-0" />
@@ -116,15 +119,6 @@ const SideBar = () => {
                                         <SvgChicken />
                                     </div>
                                     <span className="nav-link-text ms-1">Chicken Death</span>
-                                </Link>
-                            </li> : null}
-                        {isAuthenticated ?
-                            <li className="nav-item">
-                                <Link className="nav-link  " to="/others-expense">
-                                    <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                                        <SvgRTL />
-                                    </div>
-                                    <span className="nav-link-text ms-1">Others Expenses</span>
                                 </Link>
                             </li> : null}
                         <li className="nav-item mt-3">

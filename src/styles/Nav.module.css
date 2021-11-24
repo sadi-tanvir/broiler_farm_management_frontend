@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+.logoIncon {
+  font-size: 25px;
+  font-weight: bold;
+}
+.logoText {
+  font-family: "Lobster", cursive;
+  font-size: 18px;
+}
+
+.sideLogoIncon {
+  font-size: 18px;
+  font-weight: bold;
+}
+.sideLogoText {
+  font-family: "Lobster", cursive;
+  font-size: 13px;
+}
+
+@media (max-width: 375px) {
+  .logoIncon {
+    font-size: 22px;
+  }
+  .logoText {
+    font-size: 15px;
+  }
+}

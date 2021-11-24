@@ -5,7 +5,7 @@ import {
     CHICKS_UPDATE_QUANTITY,
     CHICKS_UPDATE_PRICE,
     CHICKS_UPDATE_DATE,
-    CHICKS_UPDATE_TIME
+    CHICKS_UPDATE_SALES
 } from "../actions/types"
 
 
@@ -15,8 +15,8 @@ const initialState = {
     company: "",
     quantity: "",
     price: "",
-    time: "",
-    date: ""
+    date: "",
+    salesDate: "",
 }
 
 const chicksReducer = (state = initialState, action) => {
@@ -50,16 +50,16 @@ const chicksReducer = (state = initialState, action) => {
             price: action.payload
         }
     }
-    else if (action.type === CHICKS_UPDATE_TIME) {
-        return {
-            ...state,
-            time: action.payload
-        }
-    }
     else if (action.type === CHICKS_UPDATE_DATE) {
         return {
             ...state,
             date: action.payload
+        }
+    }
+    else if (action.type === CHICKS_UPDATE_SALES) {
+        return {
+            ...state,
+            salesDate: action.payload
         }
     }
     else {

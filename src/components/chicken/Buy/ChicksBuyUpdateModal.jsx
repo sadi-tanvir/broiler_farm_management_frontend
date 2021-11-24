@@ -1,4 +1,4 @@
-import React, { memo, useState} from 'react'
+import React, { memo, useState } from 'react'
 import TextInputField from "../../re-usable-component/TextInputField"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
@@ -25,8 +25,8 @@ const ChicksBuyUpdateModal = () => {
         company: buyChicken.company,
         quantity: buyChicken.quantity,
         price: buyChicken.price,
-        time: buyChicken.time,
-        date: buyChicken.date
+        date: buyChicken.date,
+        salesDate: buyChicken.salesDate,
     })
 
 
@@ -41,16 +41,15 @@ const ChicksBuyUpdateModal = () => {
     // chicks update
     const chicksUpdate = (e) => {
         e.preventDefault()
-        const { _id, id2, company, quantity, price, time, date } = state
-        console.log(_id, id2, company, quantity, price, time, date);
+        const { _id, id2, company, quantity, price, date, salesDate } = state
         axios.put(`${apiBaseUrl}/chicks-update`, {
             _id,
             id2,
             company,
             quantity: parseInt(quantity),
             price: parseInt(price),
-            time,
-            date
+            date,
+            salesDate,
         }).then(res => {
             console.log(res);
             // add to redux & localStorage
@@ -121,19 +120,19 @@ const ChicksBuyUpdateModal = () => {
                         divClass="mb-3"
                         type="text"
                         inpClass={classes.modalInput}
-                        placeholder="Time"
-                        name="time"
+                        placeholder="Date"
+                        name="date"
                         onChange={handleChange}
-                        value={state.time}
+                        value={state.date}
                     />
                     <TextInputField
                         divClass="mb-3"
                         type="text"
                         inpClass={classes.modalInput}
-                        placeholder="Date"
-                        name="date"
+                        placeholder="MM/DD/YYYY HH:MM:SS"
+                        name="salesDate"
                         onChange={handleChange}
-                        value={state.date}
+                        value={state.salesDate}
                     />
                 </Modal>
             </form>

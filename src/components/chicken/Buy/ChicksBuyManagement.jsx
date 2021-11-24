@@ -19,8 +19,8 @@ import {
     CHICKS_UPDATE_COMPANY,
     CHICKS_UPDATE_QUANTITY,
     CHICKS_UPDATE_PRICE,
-    CHICKS_UPDATE_TIME,
     CHICKS_UPDATE_DATE,
+    CHICKS_UPDATE_SALES,
 } from "../../../redux/actions/types"
 
 const ChicksBuyManagement = () => {
@@ -40,8 +40,8 @@ const ChicksBuyManagement = () => {
         dispatch({ type: CHICKS_UPDATE_COMPANY, payload: buyChicken.company })
         dispatch({ type: CHICKS_UPDATE_QUANTITY, payload: buyChicken.quantity })
         dispatch({ type: CHICKS_UPDATE_PRICE, payload: buyChicken.price })
-        dispatch({ type: CHICKS_UPDATE_TIME, payload: buyChicken.time })
         dispatch({ type: CHICKS_UPDATE_DATE, payload: buyChicken.date })
+        dispatch({ type: CHICKS_UPDATE_SALES, payload: buyChicken.salesDate })
     }
 
 

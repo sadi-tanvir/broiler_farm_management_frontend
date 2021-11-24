@@ -7,7 +7,6 @@ import {
     BUY_FEED,
     FINISH_FEED,
     BUY_MEDICINE,
-    OTHERS_COST,
     ALL_USER_DATA
 } from '../actions/types'
 
@@ -19,7 +18,6 @@ const initialState = {
     buyFeed: [],
     finishFeed: [],
     buyMedicine: [],
-    othersCost: [],
     isAuthenticated: false,
     isAdmin: false,
     users: []
@@ -41,7 +39,6 @@ const loginReducer = (state = initialState, action) => {
             buyFeed: [],
             finishFeed: [],
             buyMedicine: [],
-            othersCost: [],
             isAuthenticated: false,
             isAdmin: false,
             users: []
@@ -75,11 +72,6 @@ const loginReducer = (state = initialState, action) => {
         return {
             ...state,
             buyMedicine: action.payload
-        }
-    } else if (action.type === OTHERS_COST) {
-        return {
-            ...state,
-            othersCost: action.payload
         }
     } else if (action.type === ALL_USER_DATA) {
         return {

@@ -7,7 +7,6 @@ import ChangeProfilePicModal from './changeUserInfo/ChangeProfilePicModal'
 import ChangeCoverPicModal from './changeUserInfo/ChangeCoverPicModal'
 import { apiBaseUrl } from "../Utils/constant"
 import { useSelector } from "react-redux"
-import Check from "../re-usable-component/see/Accordion"
 
 
 const ProfileManagement = () => {
@@ -62,7 +61,6 @@ const ProfileManagement = () => {
                     </div>
                 </div>
                 <UserInformation />
-                <Check />
             </div>
 
             {/* modal */}

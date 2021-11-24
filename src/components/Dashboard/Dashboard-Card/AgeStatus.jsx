@@ -14,7 +14,7 @@ const AgeStatus = () => {
     // age status
     useMemo(() => {
         // age of hens
-        const boughtDate = new Date(`${buyChicken.date} ${buyChicken.time}`).getTime()
+        const boughtDate = new Date(`${buyChicken.date}`).getTime()
         const currentDate = new Date().getTime()
         const diffBetween = currentDate - boughtDate
         const totalAge = Math.floor(diffBetween / (24 * 60 * 60 * 1000)) + 1
