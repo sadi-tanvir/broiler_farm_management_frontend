@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import TextInputField from "../re-usable-component/TextInputField"
+import DatalistTextInput from "../re-usable-component/DatalistTextInput"
 import classes from "../../styles/TextInput.module.css"
 import Modal from "../re-usable-component/Modal"
 import { useSelector, useDispatch } from "react-redux"
@@ -23,6 +24,25 @@ const MedicineUpdateModal = ({ modalId, medicineUpdateFunc }) => {
     // redux
     const dispatch = useDispatch()
     const { _id, id2, name, quantity, company, group, price, date } = useSelector(state => state.medicineReducer)
+    const { buyMedicine } = useSelector(state => state.loginReducer)
+
+    // medicine name sorting
+    const medicineNameArr = buyMedicine.map(medicine => {
+        return medicine.name
+    })
+    const medicinesName = [...new Set(medicineNameArr)]
+
+    // medicine group sorting
+    const medicineGroupArr = buyMedicine.map(medicine => {
+        return medicine.group
+    })
+    const medicinesGroup = [...new Set(medicineGroupArr)]
+
+    // medicine Compay sorting
+    const medicineCompanyArr = buyMedicine.map(medicine => {
+        return medicine.company
+    })
+    const medicinesCompay = [...new Set(medicineCompanyArr)]
 
     return (
         <>
@@ -51,30 +71,25 @@ const MedicineUpdateModal = ({ modalId, medicineUpdateFunc }) => {
                         onChange={(e) => dispatch({ type: MEDICINE_UPDATE_ID_2, payload: e.target.value })}
                         disabled={true}
                     />
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) => dispatch({ type: MEDICINE_UPDATE_NAME, payload: e.target.value })}
-                    />
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Group"
-                        value={group}
-                        onChange={(e) => dispatch({ type: MEDICINE_UPDATE_GROUP, payload: e.target.value })}
-                    />
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="Company"
-                        value={company}
-                        onChange={(e) => dispatch({ type: MEDICINE_UPDATE_COMPANY, payload: e.target.value })}
-                    />
+
+                    <DatalistTextInput name="name" value={name} onChange={(e) => dispatch({ type: MEDICINE_UPDATE_NAME, payload: e.target.value })} placeholder="Name" inpClass={classes.modalInput} >
+                        {
+                            medicinesName.map(name => <option value={name} />)
+                        }
+                    </DatalistTextInput>
+
+                    <DatalistTextInput name="group" placeholder="Group" value={group} onChange={(e) => dispatch({ type: MEDICINE_UPDATE_GROUP, payload: e.target.value })} inpClass={classes.modalInput} >
+                        {
+                            medicinesGroup.map(group => <option value={group} />)
+                        }
+                    </DatalistTextInput>
+
+                    <DatalistTextInput name="company" placeholder="Company" value={company} onChange={(e) => dispatch({ type: MEDICINE_UPDATE_COMPANY, payload: e.target.value })} inpClass={classes.modalInput} >
+                        {
+                            medicinesCompay.map(company => <option value={company} />)
+                        }
+                    </DatalistTextInput>
+
                     <TextInputField
                         divClass="mb-3"
                         type="number"

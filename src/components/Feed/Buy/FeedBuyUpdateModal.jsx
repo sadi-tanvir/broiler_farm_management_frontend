@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 import TextInputField from "../../re-usable-component/TextInputField"
+import DatalistTextInput from "../../re-usable-component/DatalistTextInput"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from "../../re-usable-component/Modal"
 import SelectOptionInput from "../../re-usable-component/SelectOptionInput"
@@ -22,6 +23,14 @@ const FeedBuyUpdateModal = ({ feedUpdateFunc, modalId }) => {
     // redux
     const dispatch = useDispatch()
     const { _id, id2, name, category, bag, price, date } = useSelector(state => state.feedReducer)
+    const { buyFeed } = useSelector(state => state.loginReducer)
+
+
+    // feed category sorting
+    const feedCategoryArr = buyFeed.map(feed => {
+        return feed.category
+    })
+    const feedCategories = [...new Set(feedCategoryArr)]
 
 
     return (
@@ -64,10 +73,11 @@ const FeedBuyUpdateModal = ({ feedUpdateFunc, modalId }) => {
                         value={name}
                     />
 
-                    <SelectOptionInput value={category} onChange={(e) => dispatch({ type: FEED_UPDATE_CATEGORY, payload: e.target.value })} name="category" divClass="mb-3" inpClass={classes.modalInput}>
-                        <option value="STARTER">STARTER</option>
-                        <option value="GROWER">GROWER</option>
-                    </SelectOptionInput>
+                    <DatalistTextInput onChange={(e) => dispatch({ type: FEED_UPDATE_CATEGORY, payload: e.target.value })} name="category" value={category} placeholder="Feed Categories" inpClass={classes.modalInput} >
+                        {
+                            feedCategories.map(category => <option value={category} />)
+                        }
+                    </DatalistTextInput>
 
                     <TextInputField
                         divClass="mb-3"

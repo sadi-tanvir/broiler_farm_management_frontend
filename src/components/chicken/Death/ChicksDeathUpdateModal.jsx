@@ -24,7 +24,14 @@ const ChicksDeathUpdateModal = ({ ChicksDeathUpdate, modalId }) => {
     // redux
     const dispatch = useDispatch()
     const { _id, id2, reason, date, time, death } = useSelector(state => state.chicksDeathReducer)
+    const { deathChickens } = useSelector(state => state.loginReducer)
 
+
+    // sorting death resons
+    const deathReasonsArr = deathChickens.map(death => {
+        return death.reason
+    })
+    const deathResons = [...new Set(deathReasonsArr)]
 
 
     return (
@@ -32,7 +39,7 @@ const ChicksDeathUpdateModal = ({ ChicksDeathUpdate, modalId }) => {
             <form onSubmit={(e) => ChicksDeathUpdate(e.preventDefault())} roles="form text-left">
                 <Modal
                     modalId={modalId}
-                    modalHeader="Update Chicken Death Information"
+                    modalHeader="Update Death Chicks Information"
                     btnText="Update Information"
                     btnColor="bg-gradient-info"
                 >
@@ -57,8 +64,9 @@ const ChicksDeathUpdateModal = ({ ChicksDeathUpdate, modalId }) => {
                         disabled={true}
                     />
                     <DatalistTextInput onChange={(e) => dispatch({ type: CHICKS_DEATH_UPDATE_REASON, payload: e.target.value })} name="reason" value={reason} placeholder="Reason of Death" inpClass={classes.modalInput} >
-                        <option value="SICK" />
-                        <option value="HIT STROKE" />
+                        {
+                            deathResons.map(reason => <option value={reason} />)
+                        }
                     </DatalistTextInput>
                     <TextInputField
                         divClass="mb-3"

@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect } from 'react'
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import Button from "../../re-usable-component/Button"
 import OverView from '../../re-usable-component/OverView'
 import OverviewRow from "../../re-usable-component/OverViewRow"
@@ -35,7 +35,7 @@ const FeedFinishManagement = () => {
     const [output, setOutput] = useState([])
 
     // history
-    const history = useHistory()
+    const navigate = useNavigate()
 
     // total Finish Feed
     const totalFinishArr = finishFeed.map(feed => {
@@ -125,9 +125,9 @@ const FeedFinishManagement = () => {
     // redirect to login page
     useEffect(() => {
         if (!isAuthenticated) {
-            history.push('/login')
+            navigate('/login')
         }
-    }, [isAuthenticated, history])
+    }, [isAuthenticated, navigate])
 
     return (
         <>
@@ -136,7 +136,7 @@ const FeedFinishManagement = () => {
                     <div className="col-md-8">
                         <div>
                             <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#finishFeed">
-                                <i class="fas fa-plus me-2"></i>
+                                <i className="fas fa-plus me-2"></i>
                                 Add Item
                             </Button>
                             <FeedFinishAddModal />
@@ -182,18 +182,18 @@ const FeedFinishManagement = () => {
                         </InfoTableHeader>
                     </div>
                     <div className="col-md-4">
-                        <OverView overviewHeader="Finish Feed Summary">
+                        <OverView overviewHeader="Finished Feed Summary">
                             {!finishFeed ? null :
                                 <>
                                     <OverviewRow
-                                        title="Total Feed Finish"
+                                        title="Total Feed Finished"
                                         titleColor="text-info text-gradient"
                                         iconClass="fas fa-dove text-danger text-gradient"
                                         quantity={`${totalFinishFeed} Bag`}
                                         unitClass="text-secondry"
                                     />
                                     <OverviewRow
-                                        title="Grower Feed Finish"
+                                        title="Grower Feed Finished"
                                         titleColor="text-info text-gradient"
                                         iconClass="ni ni-cart text-danger text-gradient"
                                         quantity={`${totalGrowerFinish} Bag`}
@@ -201,7 +201,7 @@ const FeedFinishManagement = () => {
                                     />
 
                                     <OverviewRow
-                                        title="Starter Feed Finish"
+                                        title="Starter Feed Finished"
                                         titleColor="text-info text-gradient"
                                         iconClass="fas fa-stethoscope text-danger text-gradient"
                                         quantity={`${totalStarterFinish} Bag`}

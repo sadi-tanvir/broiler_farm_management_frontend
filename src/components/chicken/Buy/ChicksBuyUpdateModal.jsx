@@ -1,5 +1,4 @@
-import React, { memo, useState, useEffect} from 'react'
-import { useHistory } from "react-router-dom"
+import React, { memo, useState} from 'react'
 import TextInputField from "../../re-usable-component/TextInputField"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
@@ -17,7 +16,7 @@ const ChicksBuyUpdateModal = () => {
 
     // redux
     const dispatch = useDispatch()
-    const { buyChicken, isAuthenticated } = useSelector(state => state.loginReducer)
+    const { buyChicken } = useSelector(state => state.loginReducer)
 
     // state
     const [state, setState] = useState({
@@ -26,13 +25,9 @@ const ChicksBuyUpdateModal = () => {
         company: buyChicken.company,
         quantity: buyChicken.quantity,
         price: buyChicken.price,
-        time: buyChicken.time,
-        date: buyChicken.date
+        date: buyChicken.date,
+        salesDate: buyChicken.salesDate,
     })
-
-
-    // history
-    const history = useHistory()
 
 
     // handle change
@@ -46,16 +41,16 @@ const ChicksBuyUpdateModal = () => {
     // chicks update
     const chicksUpdate = (e) => {
         e.preventDefault()
-        const { _id, id2, company, quantity, price, time, date } = state
-        console.log(_id, id2, company, quantity, price, time, date);
+        const { _id, id2, company, quantity, price, date,salesDate } = state
+        console.log(_id, id2, company, quantity, price, date,salesDate);
         axios.put(`${apiBaseUrl}/chicks-update`, {
             _id,
             id2,
             company,
             quantity: parseInt(quantity),
             price: parseInt(price),
-            time,
-            date
+            date,
+            salesDate
         }).then(res => {
             console.log(res);
             // add to redux & localStorage
@@ -67,19 +62,12 @@ const ChicksBuyUpdateModal = () => {
     }
 
 
-    // redirect to login page
-    useEffect(() => {
-        if (!isAuthenticated) {
-            history.push('/login')
-        }
-    }, [isAuthenticated, history])
-
     return (
         <>
             <form onSubmit={chicksUpdate} roles="form text-left">
                 <Modal
                     modalId="chicksUpdate"
-                    modalHeader="Update Chicken Information"
+                    modalHeader="Update Chicks Information"
                     btnText="Update Information"
                     btnColor="bg-gradient-info"
                 >
@@ -118,6 +106,7 @@ const ChicksBuyUpdateModal = () => {
                         inpClass={classes.modalInput}
                         placeholder="Quantity"
                         onChange={handleChange}
+                        name="quantity"
                         value={state.quantity}
                     />
                     <TextInputField
@@ -133,19 +122,19 @@ const ChicksBuyUpdateModal = () => {
                         divClass="mb-3"
                         type="text"
                         inpClass={classes.modalInput}
-                        placeholder="Time"
-                        name="time"
+                        placeholder="Date"
+                        name="date"
                         onChange={handleChange}
-                        value={state.time}
+                        value={state.date}
                     />
                     <TextInputField
                         divClass="mb-3"
                         type="text"
                         inpClass={classes.modalInput}
-                        placeholder="Date"
-                        name="date"
+                        placeholder="MM/DD/YYYY HH:MM:SS"
+                        name="salesDate"
                         onChange={handleChange}
-                        value={state.date}
+                        value={state.salesDate}
                     />
                 </Modal>
             </form>

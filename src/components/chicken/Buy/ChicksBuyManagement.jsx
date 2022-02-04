@@ -1,4 +1,5 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
 import Button from "../../re-usable-component/Button"
 import OverView from '../../re-usable-component/OverView'
 import OverviewRow from "../../re-usable-component/OverViewRow"
@@ -18,16 +19,18 @@ import {
     CHICKS_UPDATE_COMPANY,
     CHICKS_UPDATE_QUANTITY,
     CHICKS_UPDATE_PRICE,
-    CHICKS_UPDATE_TIME,
+    CHICKS_UPDATE_SALESTIME,
     CHICKS_UPDATE_DATE,
 } from "../../../redux/actions/types"
 
 const ChicksBuyManagement = () => {
     // redux
     const dispatch = useDispatch()
-    const { buyChicken } = useSelector(state => state.loginReducer)
+    const { buyChicken, isAuthenticated } = useSelector(state => state.loginReducer)
 
 
+    // history
+    const navigate = useNavigate()
 
 
     // set update input value
@@ -37,8 +40,8 @@ const ChicksBuyManagement = () => {
         dispatch({ type: CHICKS_UPDATE_COMPANY, payload: buyChicken.company })
         dispatch({ type: CHICKS_UPDATE_QUANTITY, payload: buyChicken.quantity })
         dispatch({ type: CHICKS_UPDATE_PRICE, payload: buyChicken.price })
-        dispatch({ type: CHICKS_UPDATE_TIME, payload: buyChicken.time })
         dispatch({ type: CHICKS_UPDATE_DATE, payload: buyChicken.date })
+        dispatch({ type: CHICKS_UPDATE_SALESTIME, payload: buyChicken.salesDate })
     }
 
 
@@ -60,6 +63,15 @@ const ChicksBuyManagement = () => {
     }
 
 
+
+
+    // redirect to login page
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login')
+        }
+    }, [isAuthenticated, navigate])
+
     return (
         <>
             <div className="container-fluid py-4">
@@ -67,14 +79,14 @@ const ChicksBuyManagement = () => {
                     <div className="col-md-8">
                         <div>
                             <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addChicks">
-                                <i class="fas fa-plus me-2"></i>
+                                <i className="fas fa-plus me-2"></i>
                                 Add Item
                             </Button>
                             <ChiksAddModal />
                         </div>
                         {/* table header */}
                         <InfoTableHeader
-                            header="chicken Management"
+                            header="Chicks Management"
                             col1="Company Name"
                             col2="Quantity"
                             col3="Price"
@@ -105,7 +117,7 @@ const ChicksBuyManagement = () => {
                         </InfoTableHeader>
                     </div>
                     <div className="col-md-4">
-                        <OverView  overviewHeader="Chicks Summary">
+                        <OverView overviewHeader="Chicks Summary">
                             {!buyChicken ? null :
                                 <>
                                     <OverviewRow

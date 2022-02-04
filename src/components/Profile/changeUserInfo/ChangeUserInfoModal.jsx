@@ -1,6 +1,5 @@
 import React, { memo, useState } from 'react'
 import TextInputField from "../../re-usable-component/TextInputField"
-import DatalistTextInput from "../../re-usable-component/DatalistTextInput"
 import classes from "../../../styles/TextInput.module.css"
 import Modal from '../../re-usable-component/Modal'
 import axios from "axios"

@@ -22,7 +22,7 @@ const initialState = {
     othersCost: [],
     isAuthenticated: false,
     isAdmin: false,
-    allUser: []
+    users: []
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -36,8 +36,15 @@ const loginReducer = (state = initialState, action) => {
         return {
             ...state,
             user: {},
+            buyChicken: {},
+            deathChickens: [],
+            buyFeed: [],
+            finishFeed: [],
+            buyMedicine: [],
+            othersCost: [],
             isAuthenticated: false,
-            isAdmin: false
+            isAdmin: false,
+            users: []
         }
     } else if (action.type === SET_ADMIN) {
         return {
@@ -77,7 +84,7 @@ const loginReducer = (state = initialState, action) => {
     } else if (action.type === ALL_USER_DATA) {
         return {
             ...state,
-            allUser: action.payload
+            users: action.payload
         }
     } else {
         return {

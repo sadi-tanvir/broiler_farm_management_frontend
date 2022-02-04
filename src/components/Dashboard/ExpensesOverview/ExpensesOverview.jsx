@@ -36,12 +36,18 @@ const ExpensesOverview = () => {
     })
     const totalMedicinePrice = medicinePriceArr.reduce((pre, curr) => pre + curr, 0)
 
+
+    // Total Expense Amount
+    const chikenAmount = buyChicken.quantity * buyChicken.price
+    const TotalExpenseAmount = chikenAmount + TotalFeedAmount + totalMedicinePrice
+    
+
     return (
         <>
             <div className="container-fluid py-4">
                 <div className="row my-4">
                     <div className="col-lg-4 col-md-6">
-                        <OverView overviewHeader="Monthly Expense Overview">
+                        <OverView overviewHeader="Monthly Expense Overview" totalExpense={`Total = ${TotalExpenseAmount} BDT`}>
                             <OverviewRow
                                 title="Chicks Cost"
                                 titleColor="text-info"

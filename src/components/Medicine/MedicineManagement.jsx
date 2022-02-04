@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import InfoTableHeader from '../re-usable-component/InfoTableHeader'
 import InfoTableRow from "../re-usable-component/InfoTableRow"
 import medicineImg from "../image/Medicine.jpg"
@@ -39,7 +39,7 @@ const MedicineManagement = () => {
     const [outputMedicine, setOutputMedicine] = useState([])
 
     // history
-    const history = useHistory()
+    const navigate = useNavigate()
 
 
     // total medicine item
@@ -126,9 +126,9 @@ const MedicineManagement = () => {
     // redirect to login page
     useEffect(() => {
         if (!isAuthenticated) {
-            history.push('/login')
+            navigate('/login')
         }
-    }, [isAuthenticated, history])
+    }, [isAuthenticated, navigate])
 
     return (
         <>
@@ -138,7 +138,7 @@ const MedicineManagement = () => {
                 <div className="row mb-4 mb-sm-0">
                     <div className="col-md-6">
                         <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addMedicine">
-                            <i class="fas fa-plus me-2"></i>
+                            <i className="fas fa-plus me-2"></i>
                             Add Item
                         </Button>
                         <MedicineAddModal />

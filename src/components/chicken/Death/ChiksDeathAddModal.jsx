@@ -14,7 +14,13 @@ const ChiksDeathAddModal = () => {
 
     // redux
     const dispatch = useDispatch()
-    const { buyChicken } = useSelector(state => state.loginReducer)
+    const { deathChickens } = useSelector(state => state.loginReducer)
+
+    // sorting death resons
+    const deathReasonsArr = deathChickens.map(death => {
+        return death.reason
+    })
+    const deathResons = [...new Set(deathReasonsArr)]
 
     // state
     const [chicken, setChicken] = useState({
@@ -53,7 +59,7 @@ const ChiksDeathAddModal = () => {
             <form onSubmit={submitChicksDeathInfo} roles="form text-left">
                 <Modal
                     modalId="addChicks"
-                    modalHeader="Add Chicken Information"
+                    modalHeader="Death Chicks Information"
                     btnText="Add Information"
                     btnColor="bg-gradient-primary"
                 >
@@ -67,8 +73,9 @@ const ChiksDeathAddModal = () => {
                         value={chicken.death}
                     />
                     <DatalistTextInput onChange={handleChange} name="reason" value={chicken.reason} placeholder="Reason of Death" inpClass={classes.modalInput} >
-                        <option value="SICK" />
-                        <option value="HIT STROKE" />
+                        {
+                            deathResons.map(reason => <option value={reason} />)
+                        }
                     </DatalistTextInput>
                 </Modal>
             </form>

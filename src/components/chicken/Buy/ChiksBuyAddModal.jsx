@@ -5,7 +5,7 @@ import Modal from '../../re-usable-component/Modal'
 import axios from "axios"
 import { apiBaseUrl } from "../../Utils/constant"
 import { BUY_CHICKEN } from "../../../redux/actions/types"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 
 
@@ -13,13 +13,13 @@ const ChiksBuyAddModal = () => {
 
     // redux
     const dispatch = useDispatch()
-    const { buyChicken } = useSelector(state => state.loginReducer)
 
     // state
     const [chicken, setChicken] = useState({
         company: "",
         quantity: "",
-        price: ""
+        price: "",
+        salesDate: ""
     })
 
 
@@ -34,11 +34,12 @@ const ChiksBuyAddModal = () => {
     // submit functon
     const submitChickenInfo = (e) => {
         e.preventDefault()
-        const { company, quantity, price } = chicken
+        const { company, quantity, price,salesDate } = chicken
         axios.put(`${apiBaseUrl}/chicks-buy`, {
             company,
             quantity: parseInt(quantity),
-            price: parseInt(price)
+            price: parseInt(price),
+            salesDate
         }).then(res => {
             // add to redux & localStorage
             dispatch({ type: BUY_CHICKEN, payload: res.data.chicks })
@@ -54,7 +55,7 @@ const ChiksBuyAddModal = () => {
             <form onSubmit={submitChickenInfo} roles="form text-left">
                 <Modal
                     modalId="addChicks"
-                    modalHeader="Add Chicken Information"
+                    modalHeader="Add Chicks Information"
                     btnText="Add Information"
                     btnColor="bg-gradient-primary"
                 >
@@ -84,6 +85,15 @@ const ChiksBuyAddModal = () => {
                         name="price"
                         onChange={handleChange}
                         value={chicken.price}
+                    />
+                    <TextInputField
+                        divClass="mb-3"
+                        type="text"
+                        inpClass={classes.modalInput}
+                        placeholder="MM/DD/YYYY HH:MM:SS"
+                        name="salesDate"
+                        onChange={handleChange}
+                        value={chicken.salesDate}
                     />
                 </Modal>
             </form>
