@@ -8,15 +8,14 @@ import { useSelector } from "react-redux"
 const ExpensesOverview = () => {
 
     // redux
-    const { buyChicken, buyFeed, buyMedicine } = useSelector(state => state.loginReducer)
+    const { buyChicken, buyFeed, buyMedicine, othersCost } = useSelector(state => state.loginReducer)
 
+    
     // total feed bag
     const feedBagCountArr = buyFeed.map(feed => {
         return feed.bag
     })
     const TotalFeedBag = feedBagCountArr.reduce((pre, curr) => pre + curr, 0)
-
-
     // total feed amount 
     const feedAmountArray = buyFeed.map(feed => {
         return feed.price * feed.bag
@@ -29,18 +28,25 @@ const ExpensesOverview = () => {
         return medicine.quantity
     })
     const totalMedicineItem = medicineItemArr.reduce((pre, curr) => pre + curr, 0)
-
     // total medicine cost
     const medicinePriceArr = buyMedicine.map(medicine => {
         return medicine.quantity * medicine.price
     })
     const totalMedicinePrice = medicinePriceArr.reduce((pre, curr) => pre + curr, 0)
 
+    
+
+    // others Expenses
+    const OthersExpArr = othersCost.map((item) => {
+        return item.price
+    })
+    const totalOthersExp = OthersExpArr.reduce((pre, curr) => pre + curr, 0)
+
 
     // Total Expense Amount
     const chikenAmount = buyChicken.quantity * buyChicken.price
-    const TotalExpenseAmount = chikenAmount + TotalFeedAmount + totalMedicinePrice
-    
+    const TotalExpenseAmount = chikenAmount + TotalFeedAmount + totalMedicinePrice + totalOthersExp
+
 
     return (
         <>
@@ -72,27 +78,11 @@ const ExpensesOverview = () => {
                             />
 
                             <OverviewRow
-                                title="Transport Cost"
-                                titleColor="text-info"
-                                iconClass="fas fa-shuttle-van text-danger text-gradient"
-                                quantity={3}
-                                amount={2500}
-                            />
-
-                            <OverviewRow
                                 title="Others Cost"
                                 titleColor="text-info"
                                 iconClass="fas fa-bookmark text-danger text-gradient"
-                                quantity={5}
-                                amount={3000}
-                            />
-
-                            <OverviewRow
-                                title="New order #9583120"
-                                titleColor="text-info"
-                                iconClass="ni ni-money-coins text-danger text-gradient"
-                                quantity={5}
-                                amount={3000}
+                                quantity={`${othersCost.length} item`}
+                                amount={totalOthersExp}
                             />
                         </OverView>
                     </div>

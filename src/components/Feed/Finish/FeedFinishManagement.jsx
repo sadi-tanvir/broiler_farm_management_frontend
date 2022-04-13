@@ -1,8 +1,6 @@
 import React, { memo, useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import Button from "../../re-usable-component/Button"
-import OverView from '../../re-usable-component/OverView'
-import OverviewRow from "../../re-usable-component/OverViewRow"
 import FeedFinishAddModal from "./FeedFinishAddModal"
 import InfoTableHeader from "../../re-usable-component/InfoTableHeader"
 import InfoTableRow from "../../re-usable-component/InfoTableRow"
@@ -21,6 +19,7 @@ import {
     FEED_FINISH_UPDATE_BAG,
     FEED_FINISH_UPDATE_DATE
 } from "../../../redux/actions/types"
+import OverviewFeedFinish from "./OverviewFeedFinish"
 
 
 
@@ -133,7 +132,8 @@ const FeedFinishManagement = () => {
         <>
             <div className="container-fluid py-4">
                 <div className="row">
-                    <div className="col-md-8">
+                    {/* Feed details table */}
+                    <div className="col-md-8 mt-md-3">
                         <div>
                             <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#finishFeed">
                                 <i className="fas fa-plus me-2"></i>
@@ -181,36 +181,16 @@ const FeedFinishManagement = () => {
                             })}
                         </InfoTableHeader>
                     </div>
-                    <div className="col-md-4">
-                        <OverView overviewHeader="Finished Feed Summary">
-                            {!finishFeed ? null :
-                                <>
-                                    <OverviewRow
-                                        title="Total Feed Finished"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="fas fa-dove text-danger text-gradient"
-                                        quantity={`${totalFinishFeed} Bag`}
-                                        unitClass="text-secondry"
-                                    />
-                                    <OverviewRow
-                                        title="Grower Feed Finished"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="ni ni-cart text-danger text-gradient"
-                                        quantity={`${totalGrowerFinish} Bag`}
-                                        unitClass="text-secondry"
-                                    />
 
-                                    <OverviewRow
-                                        title="Starter Feed Finished"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="fas fa-stethoscope text-danger text-gradient"
-                                        quantity={`${totalStarterFinish} Bag`}
-                                        unitClass="text-secondry"
-                                    />
-                                </>
-                            }
-                        </OverView>
-                    </div>
+
+                    {/* overviewHeader summary */}
+                    <OverviewFeedFinish
+                        displayState="order-first order-md-last mb-4 mb-md-0"
+                        finishFeed={finishFeed}
+                        totalFinishFeed={totalFinishFeed}
+                        totalGrowerFinish={totalGrowerFinish}
+                        totalStarterFinish={totalStarterFinish}
+                    />
                 </div>
             </div>
         </>

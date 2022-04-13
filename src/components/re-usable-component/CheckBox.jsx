@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CheckBox = ({ divClass, labelText, onClick, id, checked,labelLinkClass,labelLinkText }) => {
+const CheckBox = ({ divClass, labelText, onClick, id, checked,labelLinkClass,labelLinkText,onChange }) => {
     return (
         <>
             <div className={divClass}>
@@ -10,6 +10,7 @@ const CheckBox = ({ divClass, labelText, onClick, id, checked,labelLinkClass,lab
                     type="checkbox"
                     id={id}
                     checked={checked}
+                    onChange={onChange}
                 />
 
                 {labelText && <label className="form-check-label" htmlFor={id}>

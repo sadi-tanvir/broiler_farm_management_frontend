@@ -1,12 +1,23 @@
 import React, { memo, useEffect, useState } from 'react'
 import InfoTableHeader from "../../re-usable-component/InfoTableHeader"
 import InfoTableRow from "../../re-usable-component/InfoTableRow"
-import feedImg from "../../image/Feed.jpg"
 import UserUpdateModal from "./UserUpdateModal"
 import axios from "axios"
 import Swal from "sweetalert2"
 import { apiBaseUrl } from "../../Utils/constant"
-import { ALL_USER_DATA } from "../../../redux/actions/types"
+import {
+    ALL_USER_DATA,
+    USERS_ID,
+    USERS_USERID,
+    USERS_NAME,
+    USERS_EMAIL,
+    USERS_PASSWORD,
+    USERS_PHONE,
+    USERS_ROLE,
+    USERS_ACCOUNT_STATUS,
+    USERS_ACCOUNT_CREATE_DATE
+
+} from "../../../redux/actions/types"
 import { useDispatch, useSelector } from "react-redux"
 
 
@@ -14,6 +25,7 @@ const UsersManagement = () => {
     // redux
     const dispatch = useDispatch()
     const { users } = useSelector(state => state.loginReducer)
+    const { userId, name, email, password, phone,role, account_Confirmed, createdAt } = useSelector(state => state.adminReducer)
 
 
     // state
@@ -21,6 +33,19 @@ const UsersManagement = () => {
     const [outputUserInfo, setOutputUserInfo] = useState([])
 
 
+    // update input value
+    const setUpdateInputValue = (user) => {
+        dispatch({ type: USERS_ID, payload: user._id })
+        dispatch({ type: USERS_USERID, payload: user.userId })
+        dispatch({ type: USERS_NAME, payload: user.name })
+        dispatch({ type: USERS_EMAIL, payload: user.email })
+        dispatch({ type: USERS_PASSWORD, payload: user.password })
+        dispatch({ type: USERS_PHONE, payload: user.phone })
+        dispatch({ type: USERS_ROLE, payload: user.role })
+        dispatch({ type: USERS_ACCOUNT_STATUS, payload: user.account_Confirmed })
+        dispatch({ type: USERS_ACCOUNT_CREATE_DATE, payload: user.createdAt })
+
+    }
 
     // delete user
     const deleteProduct = (userId) => {
@@ -38,21 +63,28 @@ const UsersManagement = () => {
         })
     }
 
-    // // get all user data from server
-    // useEffect(() => {
-    //     axios.get(`${apiBaseUrl}/all-user-data`)
-    //         .then(res => {
-    //             console.log(res);
-    //             // update value to redux & localStorage
-    //             dispatch({ type: ALL_USER_DATA, payload: res.data.users })
-    //             localStorage.setItem('allUser', JSON.stringify(res.data.users))
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // }, [])
+
+    // update user information
+    const updateUserInfo = (user_Id) => {
+        axios.patch(`${apiBaseUrl}/all-user-update/${user_Id}`, {
+            userId,
+            name,
+            email,
+            password,
+            phone,
+            role,
+            account_Confirmed: JSON.parse(account_Confirmed),
+            createdAt
+        }).then(res => {
+            dispatch({ type: ALL_USER_DATA, payload: res.data.users })
+            localStorage.setItem('users', JSON.stringify(res.data.users))
+        }).catch(error => {
+            console.log(error.response);
+        })
+    }
 
 
+    // search filter
     useEffect(() => {
         const filterVal = users.filter(user => {
             if (searchUserInfo === '') {
@@ -71,8 +103,6 @@ const UsersManagement = () => {
         setOutputUserInfo(filterVal)
     }, [searchUserInfo, users])
 
-    // const [searchUserInfo, setSearchUserInfo] = useState("")
-    // const [outputUserInfo, setOutputUserInfo] = useState([])
 
     return (
         <>
@@ -82,13 +112,14 @@ const UsersManagement = () => {
                     header="Users Management"
                     col1="User Name"
                     col2="Phone"
-                    col3="Account Status"
-                    col4="Date of joining"
+                    col3="Role"
+                    col4="Account Status"
+                    col5="Date of joining"
                     onChange={(e) => setSearchUserInfo(e.target.value)}
                 >
 
                     {/* table row */}
-                    {outputUserInfo.map((user, index) => {
+                    {outputUserInfo.map((user) => {
                         return (
                             <>
                                 <InfoTableRow
@@ -96,17 +127,23 @@ const UsersManagement = () => {
                                     col1={user.name}
                                     col1_2={user.email}
                                     col2={user.phone}
-                                    col3={user.account_Confirmed ? `Activated` : `Deactivate`}
-                                    col4={user.createdAt}
+                                    col3={user.role}
+                                    col4={user.account_Confirmed ? `Activated` : `Deactivate`}
+                                    col5={user.createdAt}
                                     col2_color="bg-gradient-info"
-                                    col3_color={user.account_Confirmed ? `bg-gradient-success` : `bg-gradient-danger`}
-                                    col4_color="bg-gradient-info"
-                                    modalId={user.username}
+                                    col3_color={user.role == 'admin' ? `bg-gradient-primary` : `bg-gradient-warning`}
+                                    col4_color={user.account_Confirmed ? `bg-gradient-success` : `bg-gradient-danger`}
+                                    col5_color="bg-gradient-info"
+                                    modalId={user.userId}
                                     deleteProduct={() => deleteProduct(user._id)}
+                                    setUpdateInputValue={() => setUpdateInputValue(user)}
                                 >
 
                                     {/* User Info update Modal */}
-                                    <UserUpdateModal modalId={user.username} />
+                                    <UserUpdateModal
+                                        modalId={user.userId}
+                                        updateUserInfo={() => updateUserInfo(user._id)}
+                                    />
 
                                 </InfoTableRow>
                             </>

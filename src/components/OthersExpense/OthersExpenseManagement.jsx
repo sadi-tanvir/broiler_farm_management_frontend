@@ -1,112 +1,209 @@
-import React from 'react'
-// import Accordion from "../re-usable-component/see/Accordion"
-import ExpenseCategory from "./ExpenseCategory"
+import React, { memo, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
+import Button from "../re-usable-component/Button"
+import cart_img from "../image/cart.png"
 import InfoTableHeader from "../re-usable-component/InfoTableHeader"
 import InfoTableRow from "../re-usable-component/InfoTableRow"
-import Button from "../re-usable-component/Button"
-import OthersExpenseAddModal from "./OthersExpenseAddModal"
+import OverView from '../re-usable-component/OverView'
+import OverviewRow from "../re-usable-component/OverViewRow"
+import ExpenseAddModal from "./OthersExpensesAddModal"
+import OthersUpdateModal from "./OthersExpensesUpdateModal"
 import { useSelector, useDispatch } from "react-redux"
-import ExpenseOverview from "./ExpenseOverview"
+import { apiBaseUrl } from "../Utils/constant"
+import axios from 'axios'
+import Swal from "sweetalert2"
+import {
+    OTHERS_COST,
+    OTHERS_EXPENSE_UPDATE_ID,
+    OTHERS_EXPENSE_UPDATE_ID_2,
+    OTHERS_EXPENSE_UPDATE_NAME,
+    OTHERS_EXPENSE_UPDATE_DESCRIPTION,
+    OTHERS_EXPENSE_UPDATE_CATEGORY,
+    OTHERS_EXPENSE_UPDATE_PRICE,
+    OTHERS_EXPENSE_UPDATE_DATE
+} from "../../redux/actions/types"
+
+
 
 const OthersExpenseManagement = () => {
+    // redux
+    const dispatch = useDispatch()
+    const { othersCost, isAuthenticated } = useSelector(state => state.loginReducer)
+    const { _id, id2, name, description, category, price, date } = useSelector(state => state.othersExpenseReducer)
+
+    // history
+    const navigate = useNavigate()
 
 
-    const { othersCost } = useSelector(state => state.loginReducer)
-    console.log(othersCost);
+    // set update input value
+    const setUpdateInputValue = (others) => {
+        dispatch({ type: OTHERS_EXPENSE_UPDATE_ID, payload: others._id })
+        dispatch({ type: OTHERS_EXPENSE_UPDATE_ID_2, payload: others.id2 })
+        dispatch({ type: OTHERS_EXPENSE_UPDATE_NAME, payload: others.name })
+        dispatch({ type: OTHERS_EXPENSE_UPDATE_DESCRIPTION, payload: others.description })
+        dispatch({ type: OTHERS_EXPENSE_UPDATE_CATEGORY, payload: others.category })
+        dispatch({ type: OTHERS_EXPENSE_UPDATE_PRICE, payload: others.price })
+        dispatch({ type: OTHERS_EXPENSE_UPDATE_DATE, payload: others.date })
+    }
+
+
+    // delete chicks
+    const deleteProduct = (id) => {
+        console.log(id);
+        Swal.fire({ title: 'Are you sure?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes, delete it!' }).then((result) => {
+            if (result.isConfirmed) {
+                // delete function
+                axios.put(`${apiBaseUrl}/others-cost-delete/${id}`)
+                    .then(res => {
+                        // add to redux & localStorage
+                        dispatch({ type: OTHERS_COST, payload: res.data.othesrsExpense })
+                        localStorage.setItem('othersCost', JSON.stringify(res.data.othesrsExpense))
+                    }).catch(error => {
+                        console.log(error.response);
+                    })
+            }
+        })
+    }
+
+
+    // update expenses item
+    const othersExpenseUpdate = (item_id) => {
+        axios.put(`${apiBaseUrl}/others-cost-update/${item_id}`, {
+            _id,
+            id2,
+            name,
+            description,
+            category,
+            price: parseInt(price),
+            date
+        }).then(res => {
+            // add to redux & localStorage
+            dispatch({ type: OTHERS_COST, payload: res.data.othesrsExpense })
+            localStorage.setItem('othersCost', JSON.stringify(res.data.othesrsExpense))
+        }).catch(error => {
+            console.log(error.response);
+        })
+    }
+
+
+
+    // others Expenses
+    const OthersExpArr = othersCost.map((item) => {
+        return item.price
+    })
+    // transport cost
+    const transportCost = othersCost.filter((item) => {
+        return item.category == 'TRANSPORT'
+    })
+    const transportCostArr = transportCost.map((transport) => {
+        return transport.price
+    })
+    const totalTransportCost = transportCostArr.reduce((pre, curr) => pre + curr, 0)
+
+    // paper cost
+    const paperCost = othersCost.filter((item) => {
+        return item.category == 'PAPER'
+    })
+    const paperCostArr = paperCost.map((paper) => {
+        return paper.price
+    })
+    const totalPaperCost = paperCostArr.reduce((pre, curr) => pre + curr, 0)
+
+
+    const totalOthersExp = OthersExpArr.reduce((pre, curr) => pre + curr, 0)
+
+
+
+    // redirect to login page
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login')
+        }
+    }, [isAuthenticated, navigate])
+
     return (
         <>
             <div className="container-fluid py-4">
-                <div>
-                    <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#othersExpense">
-                        <i className="fas fa-plus me-2"></i>
-                        Add Item
-                    </Button>
-                    <OthersExpenseAddModal />
-                </div>
                 <div className="row">
-                    <div className="col-md-4 d-block d-sm-none">
-                        <ExpenseOverview />
-                    </div>
-                    <div className="col-md-8 my-4">
-                        <div className="accordion" style={{ margin: 0, padding: 0 }} id="accordionPanelsStayOpenExample">
-                            {othersCost.map((expense, index) => {
-                                return (
-                                    <>
-                                        <ExpenseCategory
-                                            headerClass="accordion-header text-center"
-                                            headerOpenId={expense.category}
-                                            ariaExpanded={true}
-                                            headingText={`${expense.category} Expenses`}
-                                            divCollapseId={`${expense.category}id`}
-                                            divCollapseClass={index === 0 ? `accordion-collapse collapse show` : `accordion-collapse collapse`}
-                                        >
+                    {/* Others Expense details table */}
+                    <div className="col-md-8 mt-3 mt-md-5">
+                        <div>
+                            <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addOtherExp">
+                                <i className="fas fa-plus me-2"></i>
+                                Add Item
+                            </Button>
+                            <ExpenseAddModal />
+                        </div>
+                        {/* table header */}
+                        <InfoTableHeader
+                            header="Others Expenses Management"
+                            col1="Name"
+                            col2="Category"
+                            col3="Price"
+                            col4="Date"
+                        >
 
-                                            {/* table header */}
-                                            <InfoTableHeader
-                                                // header="Transport"
-                                                col1="Name"
-                                                col3="Tk"
-                                                col4="Date"
-                                                search={true}
+                            {/* table row */}
+                            {
+                                othersCost.map((others) => {
+                                    return (
+                                        <>
+                                            <InfoTableRow
+                                                img={cart_img}
+                                                col1={others.name}
+                                                col1_2={others.description}
+                                                col2={others.category}
+                                                col3={others.price}
+                                                col4={others.date}
+                                                col2_color="bg-gradient-info"
+                                                col3_color="bg-gradient-danger"
+                                                col4_color="bg-gradient-info"
+                                                modalId={others.id2}
+                                                setUpdateInputValue={() => setUpdateInputValue(others)}
+                                                deleteProduct={() => deleteProduct(others._id)}
                                             >
 
-                                                {/* table row */}
-                                                {/* {buyChicken.chicks < 1 ? null : */}
-                                                {expense.rent.map(item => {
-                                                    return (
-                                                        <>
-                                                            <InfoTableRow
-                                                                // img={chicksImg}
-                                                                col1={item.name}
-                                                                col3={item.tk}
-                                                                col4={item.date}
-                                                                col3_color="bg-gradient-danger"
-                                                                col4_color="bg-gradient-info"
-                                                                modalId="chicksUpdate"
-                                                            // setUpdateInputValue={setUpdateInputValue}
-                                                            // deleteProduct={deleteProduct}
-                                                            >
+                                                {/* Expense update Modal */}
+                                                <OthersUpdateModal
+                                                    modalId={others.id2}
+                                                    othersExpUpdateFunc={() => othersExpenseUpdate(others.id2)}
+                                                />
 
-                                                                {/* Chicks Info update Modal */}
-                                                                {/* <ChicksUpdateModal /> */}
-
-                                                            </InfoTableRow>
-                                                        </>
-                                                    )
-                                                })}
-
-                                                {/* } */}
-                                            </InfoTableHeader>
-                                        </ExpenseCategory>
-                                    </>
-                                )
-                            })}
-
-
-
-                            {/* Electricity Bill Category */}
-                            <ExpenseCategory
-                                headerClass="accordion-header"
-                                headerOpenId="electricHeadingOpen"
-                                ariaExpanded={false}
-                                headingText="Electricity Bill Expenses"
-                                divCollapseId="electricDivCollapse"
-                                divCollapseClass="accordion-collapse collapse"
-                            >
-
-                                <strong>Electricity</strong>
-
-                            </ExpenseCategory>
-                        </div>
+                                            </InfoTableRow>
+                                        </>
+                                    )
+                                })
+                            }
+                        </InfoTableHeader>
                     </div>
 
+                    {/* overview summary */}
+                    <div className="col-md-4 order-first order-md-last mb-4 mb-md-0">
+                        <OverView overviewHeader="Others Expenses Summary">
+                            {/* {!buyChicken ? null : */}
+                            <>
+                                <OverviewRow
+                                    title="Total Cost"
+                                    titleColor="text-info text-gradient"
+                                    iconClass="fas fa-dove text-danger text-gradient"
+                                    quantity={`${totalOthersExp} tk`}
+                                />
+                                <OverviewRow
+                                    title="Transport Cost"
+                                    titleColor="text-info text-gradient"
+                                    iconClass="ni ni-cart text-danger text-gradient"
+                                    quantity={`${totalTransportCost} tk`}
+                                />
 
-
-
-
-
-                    <div className="col-md-4 d-none d-sm-block">
-                        <ExpenseOverview />
+                                <OverviewRow
+                                    title="Paper Cost"
+                                    titleColor="text-info text-gradient"
+                                    iconClass="fas fa-stethoscope text-danger text-gradient"
+                                    quantity={`${totalPaperCost} tk`}
+                                />
+                            </>
+                            {/* } */}
+                        </OverView>
                     </div>
                 </div>
             </div>
@@ -114,4 +211,4 @@ const OthersExpenseManagement = () => {
     )
 }
 
-export default OthersExpenseManagement
+export default memo(OthersExpenseManagement)

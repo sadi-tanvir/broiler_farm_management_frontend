@@ -1,7 +1,6 @@
 import React, { memo, useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import InfoTableHeader from '../../re-usable-component/InfoTableHeader'
-import classes from "../../../styles/Color.module.css"
 import InfoTableRow from "../../re-usable-component/InfoTableRow"
 import feedImg from "../../image/Feed.jpg"
 import FeedUpdateModal from "./FeedBuyUpdateModal"
@@ -131,7 +130,7 @@ const FeedBuyManagement = () => {
     return (
         <>
             <div className="container-fluid py-4">
-                <div className="row mb-4 mb-sm-0">
+                <div className="row mb-4 mb-sm-0 d-flex align-items-center">
                     <div className="col-md-6">
                         <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addFeed">
                             <i className="fas fa-plus me-2"></i>

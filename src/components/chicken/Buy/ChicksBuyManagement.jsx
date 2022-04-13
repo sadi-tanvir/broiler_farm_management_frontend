@@ -1,8 +1,6 @@
 import React, { memo, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import Button from "../../re-usable-component/Button"
-import OverView from '../../re-usable-component/OverView'
-import OverviewRow from "../../re-usable-component/OverViewRow"
 import ChiksAddModal from "./ChiksBuyAddModal"
 import InfoTableHeader from "../../re-usable-component/InfoTableHeader"
 import InfoTableRow from "../../re-usable-component/InfoTableRow"
@@ -19,9 +17,9 @@ import {
     CHICKS_UPDATE_COMPANY,
     CHICKS_UPDATE_QUANTITY,
     CHICKS_UPDATE_PRICE,
-    CHICKS_UPDATE_SALESTIME,
     CHICKS_UPDATE_DATE,
 } from "../../../redux/actions/types"
+import OverviewChicksBuy from "./OverviewChicksBuy"
 
 const ChicksBuyManagement = () => {
     // redux
@@ -41,7 +39,6 @@ const ChicksBuyManagement = () => {
         dispatch({ type: CHICKS_UPDATE_QUANTITY, payload: buyChicken.quantity })
         dispatch({ type: CHICKS_UPDATE_PRICE, payload: buyChicken.price })
         dispatch({ type: CHICKS_UPDATE_DATE, payload: buyChicken.date })
-        dispatch({ type: CHICKS_UPDATE_SALESTIME, payload: buyChicken.salesDate })
     }
 
 
@@ -76,7 +73,8 @@ const ChicksBuyManagement = () => {
         <>
             <div className="container-fluid py-4">
                 <div className="row">
-                    <div className="col-md-8">
+                    {/* chicks buy details table */}
+                    <div className="col-md-8 mt-3 mt-md-5">
                         <div>
                             <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addChicks">
                                 <i className="fas fa-plus me-2"></i>
@@ -94,7 +92,7 @@ const ChicksBuyManagement = () => {
                         >
 
                             {/* table row */}
-                            {buyChicken.chicks < 1 ? null :
+                            {!buyChicken ? null :
                                 <InfoTableRow
                                     img={chicksImg}
                                     col1={buyChicken.company}
@@ -116,33 +114,13 @@ const ChicksBuyManagement = () => {
                             }
                         </InfoTableHeader>
                     </div>
-                    <div className="col-md-4">
-                        <OverView overviewHeader="Chicks Summary">
-                            {!buyChicken ? null :
-                                <>
-                                    <OverviewRow
-                                        title="Total Chicks"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="fas fa-dove text-danger text-gradient"
-                                        quantity={`${buyChicken.quantity} pcs`}
-                                    />
-                                    <OverviewRow
-                                        title="Unit Price"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="ni ni-cart text-danger text-gradient"
-                                        quantity={`${buyChicken.price} bdt`}
-                                    />
 
-                                    <OverviewRow
-                                        title="Total Price"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="fas fa-stethoscope text-danger text-gradient"
-                                        quantity={`${buyChicken.price * buyChicken.quantity} bdt`}
-                                    />
-                                </>
-                            }
-                        </OverView>
-                    </div>
+
+                    {/* overviewHeader summary when display bigger than small size */}
+                    <OverviewChicksBuy
+                        displayState="order-first order-md-last mb-4 mb-md-0"
+                        buyChicken={buyChicken}
+                    />
                 </div>
             </div>
         </>

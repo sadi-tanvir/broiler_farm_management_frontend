@@ -14,7 +14,7 @@ const signupImg = './assets/img/curved-images/curved14.jpg'
 
 const Register = () => {
     // state
-    const [check, setCheck] = useState(true)
+    // const [check, setCheck] = useState(true)
     const [user, setUser] = useState({
         name: '',
         email: '',
@@ -94,7 +94,7 @@ const Register = () => {
                         <div className="row justify-content-center">
                             <div className="col-lg-5 text-center mx-auto">
                                 <h1 className="text-white mb-2 mt-5">Welcome!</h1>
-                                <p className="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+                                {/* <p className="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p> */}
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ const Register = () => {
                         <div className="col-xl-4 col-lg-5 col-md-7 mx-auto">
                             <div className="card z-index-0">
                                 <div className="card-header text-center pt-4">
-                                    <h5>Signup with</h5>
+                                    <h4>Signup with</h4>
                                 </div>
                                 <div className="row px-xl-5 px-sm-4 px-3">
                                     <SignUpIcon
@@ -176,7 +176,7 @@ const Register = () => {
                                             onChange={handleChange}
                                             name="password"
                                         />
-                                        <CheckBox
+                                        {/* <CheckBox
                                             divClass="form-check form-check-info text-left"
                                             onClick={() => check ? setCheck(false) : setCheck(true)}
                                             id="flexCheckDefault"
@@ -184,7 +184,7 @@ const Register = () => {
                                             labelText="I agree the"
                                             labelLinkClass="text-dark font-weight-bolder"
                                             labelLinkText=" Terms and Conditions"
-                                        />
+                                        /> */}
                                         <Button type="submit" divClass="text-center" btnClass="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</Button>
                                     </form>
                                     <p className="text-sm mt-3 mb-0">Already have an account?

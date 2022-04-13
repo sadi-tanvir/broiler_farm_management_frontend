@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
-import TextInputField from "../../re-usable-component/TextInputField"
-import DatalistTextInput from "../../re-usable-component/DatalistTextInput"
-import classes from "../../../styles/TextInput.module.css"
-import Modal from "../../re-usable-component/Modal"
+import TextInputField from "../re-usable-component/TextInputField"
+import DatalistTextInput from "../re-usable-component/DatalistTextInput"
+import classes from "../../styles/TextInput.module.css"
+import Modal from "../re-usable-component/Modal"
 import { useSelector, useDispatch } from "react-redux"
 import {
     FEED_UPDATE_ID,
@@ -12,7 +12,7 @@ import {
     FEED_UPDATE_BAG,
     FEED_UPDATE_PRICE,
     FEED_UPDATE_DATE
-} from "../../../redux/actions/types"
+} from "../../redux/actions/types"
 
 
 

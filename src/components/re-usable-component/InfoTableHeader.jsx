@@ -12,8 +12,8 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
                 <div className="col-12">
                     <div className="card mb-4">
                         <div className="card-header pb-0 d-flex">
-                            <h3 className={`text-gradient d-none d-sm-inline ${classes2.headerColor}`}>{header}</h3>
-                            <h5 className={`text-gradient d-sm-none ${classes2.headerColor}`}>{header}</h5>
+                            <h3 className={`text-gradient d-none d-sm-inline ${classes.tableHeader} ${classes2.headerColor}`}>{header}</h3>
+                            <h5 className={`text-gradient d-sm-none ${classes.tableHeader} ${classes2.headerColor}`}>{header}</h5>
 
                             <div className={`ms-md-auto pe-md-3 d-flex align-items-center ${classes.searchInp}`}>
                                 {search ? null :

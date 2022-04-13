@@ -19,7 +19,6 @@ const ChiksBuyAddModal = () => {
         company: "",
         quantity: "",
         price: "",
-        salesDate: ""
     })
 
 
@@ -34,12 +33,11 @@ const ChiksBuyAddModal = () => {
     // submit functon
     const submitChickenInfo = (e) => {
         e.preventDefault()
-        const { company, quantity, price,salesDate } = chicken
+        const { company, quantity, price } = chicken
         axios.put(`${apiBaseUrl}/chicks-buy`, {
             company,
             quantity: parseInt(quantity),
             price: parseInt(price),
-            salesDate
         }).then(res => {
             // add to redux & localStorage
             dispatch({ type: BUY_CHICKEN, payload: res.data.chicks })
@@ -85,15 +83,6 @@ const ChiksBuyAddModal = () => {
                         name="price"
                         onChange={handleChange}
                         value={chicken.price}
-                    />
-                    <TextInputField
-                        divClass="mb-3"
-                        type="text"
-                        inpClass={classes.modalInput}
-                        placeholder="MM/DD/YYYY HH:MM:SS"
-                        name="salesDate"
-                        onChange={handleChange}
-                        value={chicken.salesDate}
                     />
                 </Modal>
             </form>

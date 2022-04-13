@@ -21,6 +21,7 @@ import {
     CHICKS_DEATH_UPDATE_TIME,
     CHICKS_DEATH_UPDATE_DEATH,
 } from "../../../redux/actions/types"
+import OverviewDeathSummary from "./OverviewDeathSummary"
 
 
 
@@ -140,7 +141,8 @@ const FeedFinishManagement = () => {
         <>
             <div className="container-fluid py-4">
                 <div className="row">
-                    <div className="col-md-8">
+                    {/* death details table */}
+                    <div className="col-md-8 mt-md-5">
                         <div>
                             <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addChicks">
                                 <i className="fas fa-plus me-2"></i>
@@ -150,7 +152,7 @@ const FeedFinishManagement = () => {
                         </div>
                         {/* table header */}
                         <InfoTableHeader
-                            header="chicks Death Management"
+                            header="Chicks Death Management"
                             col1="Reason"
                             col4="Date"
                             col5="Time"
@@ -188,36 +190,16 @@ const FeedFinishManagement = () => {
                             })}
                         </InfoTableHeader>
                     </div>
-                    <div className="col-md-4">
-                        <OverView overviewHeader="Death Summary">
-                            {!deathChickens ? null :
-                                <>
-                                    <OverviewRow
-                                        title="Total Death"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="fas fa-dove text-danger text-gradient"
-                                        quantity={`${totalDeath} chicks`}
-                                        unitClass="text-secondry"
-                                    />
-                                    <OverviewRow
-                                        title="Hit Stroke"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="ni ni-cart text-danger text-gradient"
-                                        quantity={`${totalHitStroke} chicks`}
-                                        unitClass="text-secondry"
-                                    />
 
-                                    <OverviewRow
-                                        title="Sick"
-                                        titleColor="text-info text-gradient"
-                                        iconClass="fas fa-stethoscope text-danger text-gradient"
-                                        quantity={`${totalSick} chicks`}
-                                        unitClass="text-secondry"
-                                    />
-                                </>
-                            }
-                        </OverView>
-                    </div>
+
+                    {/* overviewHeader summary when display bigger than small size */}
+                    <OverviewDeathSummary
+                        displayState="order-first order-md-last mb-4 mb-md-0"
+                        deathChickens={deathChickens}
+                        totalDeath={totalDeath}
+                        totalHitStroke={totalHitStroke}
+                        totalSick={totalSick}
+                    />
                 </div>
             </div>
         </>

@@ -19,8 +19,9 @@ import {
   BUY_FEED,
   FINISH_FEED,
   BUY_MEDICINE,
+  SALES_STATUS,
   OTHERS_COST,
-  ALL_USER_DATA
+  ALL_USER_DATA,
 } from "./redux/actions/types"
 import setAuthToken from './components/Utils/setAuthToken'
 import ProfileManagement from "./components/Profile/ProfileManagement"
@@ -43,6 +44,7 @@ const App = () => {
     dispatch({ type: BUY_FEED, payload: JSON.parse(localStorage.buyFeed) })
     dispatch({ type: FINISH_FEED, payload: JSON.parse(localStorage.finishFeed) })
     dispatch({ type: BUY_MEDICINE, payload: JSON.parse(localStorage.buyMedicine) })
+    dispatch({ type: SALES_STATUS, payload: JSON.parse(localStorage.sellDate) })
     dispatch({ type: OTHERS_COST, payload: JSON.parse(localStorage.othersCost) })
 
     // dispatch()

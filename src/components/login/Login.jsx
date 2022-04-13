@@ -15,6 +15,7 @@ import {
     FINISH_FEED,
     BUY_MEDICINE,
     OTHERS_COST,
+    SALES_STATUS
 } from "../../redux/actions/types"
 import { useSelector, useDispatch } from "react-redux"
 import Swal from "sweetalert2"
@@ -26,7 +27,7 @@ const img_signup = './assets/img/curved-images/curved6.jpg'
 
 const Login = () => {
     // state
-    const [check, setCheck] = useState(true)
+    // const [check, setCheck] = useState(true)
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -57,7 +58,7 @@ const Login = () => {
             email,
             password
         }).then(res => {
-
+console.log(res.data);
             // set admin authentication
             if (res.data.user.role === 'admin') {
                 dispatch({ type: SET_ADMIN })
@@ -73,6 +74,8 @@ const Login = () => {
             dispatch({ type: FINISH_FEED, payload: res.data.finishFeed })
             dispatch({ type: BUY_MEDICINE, payload: res.data.buyMedicine })
             dispatch({ type: OTHERS_COST, payload: res.data.othersCost })
+            dispatch({ type: OTHERS_COST, payload: res.data.othersCost })
+            dispatch({ type: SALES_STATUS, payload: res.data.sales_info })
 
 
             // data store to localStorage
@@ -83,6 +86,7 @@ const Login = () => {
             localStorage.setItem('finishFeed', JSON.stringify(res.data.finishFeed))
             localStorage.setItem('buyMedicine', JSON.stringify(res.data.buyMedicine))
             localStorage.setItem('othersCost', JSON.stringify(res.data.othersCost))
+            localStorage.setItem('sellDate', JSON.stringify(res.data.sales_info))
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('role', res.data.role)
 
@@ -157,13 +161,13 @@ const Login = () => {
                                                     onChange={handleChange}
                                                     name="password"
                                                 />
-                                                <CheckBox
+                                                {/* <CheckBox
                                                     divClass="form-check form-switch"
                                                     onClick={() => check ? setCheck(false) : setCheck(true)}
                                                     id="rememberMe"
                                                     checked={check}
                                                     labelText="Remember me"
-                                                />
+                                                /> */}
                                                 <Button divClass="text-center" type="submit" btnClass="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</Button>
                                             </form>
                                         </div>

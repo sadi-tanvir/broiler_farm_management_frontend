@@ -5,8 +5,6 @@ import {
   CHICKS_UPDATE_QUANTITY,
   CHICKS_UPDATE_PRICE,
   CHICKS_UPDATE_DATE,
-  CHICKS_UPDATE_SALESTIME,
-  CHICKS_SELL_STATUS,
 } from "../actions/types";
 
 const initialState = {
@@ -16,8 +14,6 @@ const initialState = {
   quantity: "",
   price: "",
   date: "",
-  salesDate: "",
-  isSold: false,
 };
 
 const chicksReducer = (state = initialState, action) => {
@@ -50,16 +46,6 @@ const chicksReducer = (state = initialState, action) => {
     return {
       ...state,
       date: action.payload,
-    };
-  } else if (action.type === CHICKS_UPDATE_SALESTIME) {
-    return {
-      ...state,
-      salesDate: action.payload,
-    };
-  } else if (action.type === CHICKS_SELL_STATUS) {
-    return {
-      ...state,
-      isSold: action.payload,
     };
   } else {
     return {

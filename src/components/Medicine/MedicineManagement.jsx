@@ -135,7 +135,7 @@ const MedicineManagement = () => {
             <div className="container-fluid py-4">
 
                 {/* medicine overview */}
-                <div className="row mb-4 mb-sm-0">
+                <div className="row mb-4 mb-sm-0 d-flex align-items-center">
                     <div className="col-md-6">
                         <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addMedicine">
                             <i className="fas fa-plus me-2"></i>
