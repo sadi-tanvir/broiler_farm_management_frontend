@@ -8,6 +8,7 @@ const UserInformation = () => {
     // redux
     const { user } = useSelector(state => state.loginReducer)
 
+    console.log(user);
 
     return (
         <>
@@ -37,6 +38,12 @@ const UserInformation = () => {
                             </li>
                             <li className="list-group-item border-0 ps-0 text-sm">
                                 <strong className="text-dark">Email:</strong> {user.email}
+                            </li>
+                            <li className="list-group-item border-0 ps-0 text-sm">
+                                <strong className="text-dark">User Role:</strong> {user.role}
+                            </li>
+                            <li className="list-group-item border-0 ps-0 text-sm">
+                                <strong className="text-dark">Join Date:</strong> {user.createdAt}
                             </li>
                             <li className="list-group-item border-0 ps-0 text-sm">
                                 <strong className="text-dark">Location:</strong> Bangladesh

@@ -16,7 +16,7 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
                             <h5 className={`text-gradient d-sm-none ${classes.tableHeader} ${classes2.headerColor}`}>{header}</h5>
 
                             <div className={`ms-md-auto pe-md-3 d-flex align-items-center ${classes.searchInp}`}>
-                                {search ? null :
+                                {/* {search ? null : */}
                                     <div className="input-group">
                                         <input
                                             onChange={onChange}
@@ -26,7 +26,7 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
                                         />
                                         <span className="input-group-text text-body"><i className="fas fa-search" aria-hidden="true"></i></span>
                                     </div>
-                                }
+                                {/* } */}
                             </div>
                         </div>
                         <div className="card-body px-0 pt-0 pb-2">
@@ -35,7 +35,7 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
                                     <thead>
                                         <tr>
                                             {col1 && <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{col1}</th>}
-                                            {col2 && <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{col2}</th>}
+                                            {col2 && <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{col2}</th>}
                                             {col3 && <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{col3}</th>}
                                             {col4 && <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{col4}</th>}
                                             {col5 && <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{col5}</th>}

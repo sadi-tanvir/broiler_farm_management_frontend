@@ -6,7 +6,7 @@ const SalesStatus = () => {
     const { sales_status } = useSelector(state => state.loginReducer)
 
     // state
-    const [saleTime, setTime] = useState({
+    const [saleTime, setSaleTime] = useState({
         days: "",
         hours: "",
         minutes: "",
@@ -22,17 +22,16 @@ const SalesStatus = () => {
                 const dest = new Date(`${sales_status.sellDate}`).getTime()
                 const now = new Date().getTime()
                 const diff = dest - now
-                setTime({ ...saleTime, timeout: diff })
+                setSaleTime({ ...saleTime, timeout: diff })
                 const isDay = Math.floor(diff / (24 * 60 * 60 * 1000))
                 const isHours = Math.floor(diff % (24 * 60 * 60 * 1000) / (60 * 60 * 1000))
                 const isMinutes = Math.floor(diff % (60 * 60 * 1000) / (60 * 1000))
                 const isSecond = Math.floor(diff % (60 * 1000) / 1000)
 
-                setTime((preVal) => ({ ...preVal, days: isDay, hours: isHours, minutes: isMinutes, seconds: isSecond }))
+                setSaleTime((preVal) => ({ ...preVal, days: isDay, hours: isHours, minutes: isMinutes, seconds: isSecond }))
             }, 1000)
         )
-    }, [sales_status.sellDate])
-
+    }, [sales_status.sellDate, saleTime])
 
 
     return (

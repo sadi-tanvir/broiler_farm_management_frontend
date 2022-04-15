@@ -93,6 +93,7 @@ const UsersManagement = () => {
                 user.name.toLowerCase().includes(searchUserInfo.toLowerCase()) ||
                 user.email.toLowerCase().includes(searchUserInfo.toLowerCase()) ||
                 user.phone.toString().includes(searchUserInfo.toLowerCase()) ||
+                user.role.toLowerCase().includes(searchUserInfo.toLowerCase()) ||
                 user.account_Confirmed.toString().includes(searchUserInfo.toLowerCase()) ||
                 user.createdAt.toLowerCase().includes(searchUserInfo.toLowerCase())
             ) {

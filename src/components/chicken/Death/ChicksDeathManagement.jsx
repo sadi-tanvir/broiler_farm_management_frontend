@@ -154,9 +154,9 @@ const FeedFinishManagement = () => {
                         <InfoTableHeader
                             header="Chicks Death Management"
                             col1="Reason"
-                            col4="Date"
-                            col5="Time"
-                            col6="Death"
+                            col2="Date"
+                            col3="Time"
+                            col4="Death"
                             onChange={(e) => setSearch(e.target.value)}
                         >
 
@@ -167,12 +167,12 @@ const FeedFinishManagement = () => {
                                         <InfoTableRow
                                             img={chicksImg}
                                             col1={death.reason}
-                                            col4={death.date}
-                                            col5={death.time}
-                                            col6={death.death}
+                                            col2={death.date}
+                                            col3={death.time}
+                                            col4={death.death}
+                                            col2_color="bg-gradient-info"
+                                            col3_color="bg-gradient-danger"
                                             col4_color="bg-gradient-info"
-                                            col5_color="bg-gradient-danger"
-                                            col6_color="bg-gradient-info"
                                             modalId={death.id2}
                                             setUpdateInputValue={() => setUpdateInputValue(death)}
                                             deleteProduct={() => deleteProduct(death._id)}

@@ -40,8 +40,6 @@ const Login = () => {
     // router
     const navigate = useNavigate()
 
-    console.log(`Signin Component is running...`);
-
     // handle change
     const handleChange = (event) => {
         const name = event.target.name;
@@ -58,7 +56,6 @@ const Login = () => {
             email,
             password
         }).then(res => {
-console.log(res.data);
             // set admin authentication
             if (res.data.user.role === 'admin') {
                 dispatch({ type: SET_ADMIN })

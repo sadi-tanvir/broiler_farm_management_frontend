@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import Button from "../re-usable-component/Button"
 import cart_img from "../image/cart.png"
@@ -30,6 +30,10 @@ const OthersExpenseManagement = () => {
     const dispatch = useDispatch()
     const { othersCost, isAuthenticated } = useSelector(state => state.loginReducer)
     const { _id, id2, name, description, category, price, date } = useSelector(state => state.othersExpenseReducer)
+
+    // state
+    const [searchOthersExp, setSearchOthersExp] = useState("")
+    const [outputSearchOthersExp, setOutputSearchOthersExp] = useState([])
 
     // history
     const navigate = useNavigate()
@@ -113,6 +117,25 @@ const OthersExpenseManagement = () => {
     const totalOthersExp = OthersExpArr.reduce((pre, curr) => pre + curr, 0)
 
 
+    // search filter
+    useEffect(() => {
+        const _filterOthersCost = othersCost.filter(others_Cost => {
+            if (searchOthersExp === '') {
+                return others_Cost
+            } else if (
+                others_Cost.name.toLowerCase().includes(searchOthersExp.toLocaleLowerCase()) ||
+                others_Cost.description.toLowerCase().includes(searchOthersExp.toLocaleLowerCase()) ||
+                others_Cost.category.toLowerCase().includes(searchOthersExp.toLocaleLowerCase()) ||
+                others_Cost.price.toString().includes(searchOthersExp) ||
+                others_Cost.date.toLowerCase().includes(searchOthersExp.toLocaleLowerCase())
+            ) {
+                return others_Cost
+            }
+        })
+
+        setOutputSearchOthersExp(_filterOthersCost)
+    }, [searchOthersExp, othersCost])
+
 
     // redirect to login page
     useEffect(() => {
@@ -141,11 +164,12 @@ const OthersExpenseManagement = () => {
                             col2="Category"
                             col3="Price"
                             col4="Date"
+                            onChange={(e) => setSearchOthersExp(e.target.value)}
                         >
 
                             {/* table row */}
                             {
-                                othersCost.map((others) => {
+                                outputSearchOthersExp.map((others) => {
                                     return (
                                         <>
                                             <InfoTableRow
@@ -180,29 +204,29 @@ const OthersExpenseManagement = () => {
                     {/* overview summary */}
                     <div className="col-md-4 order-first order-md-last mb-4 mb-md-0">
                         <OverView overviewHeader="Others Expenses Summary">
-                            {/* {!buyChicken ? null : */}
-                            <>
-                                <OverviewRow
-                                    title="Total Cost"
-                                    titleColor="text-info text-gradient"
-                                    iconClass="fas fa-dove text-danger text-gradient"
-                                    quantity={`${totalOthersExp} tk`}
-                                />
-                                <OverviewRow
-                                    title="Transport Cost"
-                                    titleColor="text-info text-gradient"
-                                    iconClass="ni ni-cart text-danger text-gradient"
-                                    quantity={`${totalTransportCost} tk`}
-                                />
+                            {othersCost.length <= 0 ? null :
+                                <>
+                                    <OverviewRow
+                                        title="Total Cost"
+                                        titleColor="text-info text-gradient"
+                                        iconClass="fas fa-dove text-danger text-gradient"
+                                        quantity={`${totalOthersExp} tk`}
+                                    />
+                                    <OverviewRow
+                                        title="Transport Cost"
+                                        titleColor="text-info text-gradient"
+                                        iconClass="ni ni-cart text-danger text-gradient"
+                                        quantity={`${totalTransportCost} tk`}
+                                    />
 
-                                <OverviewRow
-                                    title="Paper Cost"
-                                    titleColor="text-info text-gradient"
-                                    iconClass="fas fa-stethoscope text-danger text-gradient"
-                                    quantity={`${totalPaperCost} tk`}
-                                />
-                            </>
-                            {/* } */}
+                                    <OverviewRow
+                                        title="Paper Cost"
+                                        titleColor="text-info text-gradient"
+                                        iconClass="fas fa-stethoscope text-danger text-gradient"
+                                        quantity={`${totalPaperCost} tk`}
+                                    />
+                                </>
+                            }
                         </OverView>
                     </div>
                 </div>
