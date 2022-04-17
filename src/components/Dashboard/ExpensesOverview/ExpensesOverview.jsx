@@ -52,7 +52,7 @@ const ExpensesOverview = () => {
         <>
             <div className="container-fluid py-4">
                 <div className="row my-4">
-                    <div className="col-lg-4 col-md-6">
+                    <div className="col-lg-4 col-md-6 animate__animated animate__backInRight animate__slow">
                         <OverView overviewHeader="Monthly Expense Overview" totalExpense={`Total = ${TotalExpenseAmount} BDT`}>
                             <OverviewRow
                                 title="Chicks Cost"

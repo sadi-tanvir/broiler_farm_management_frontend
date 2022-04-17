@@ -37,7 +37,7 @@ const ProfileManagement = () => {
                 <div className="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
                     <div className="row gx-4">
                         <div className="col-auto">
-                            <div className="avatar avatar-xl position-relative">
+                            <div className="avatar avatar-xl position-relative animate__animated animate__flip animate__slow">
                                 <img
                                     src={`${apiBaseUrl}/profile-pic/${user.profile_pic}`}
                                     alt="profile_image"
@@ -47,10 +47,10 @@ const ProfileManagement = () => {
                         </div>
                         <div className="col-auto my-auto">
                             <div className="h-100">
-                                <h5 className="mb-1">
+                                <h5 className="mb-1 animate__animated animate__backInDown animate__slow">
                                     {user.name}
                                 </h5>
-                                <p className="mb-0 font-weight-bold text-sm">
+                                <p className="mb-0 font-weight-bold text-sm animate__animated animate__backInUp animate__slow">
                                     {user.email}
                                 </p>
                             </div>

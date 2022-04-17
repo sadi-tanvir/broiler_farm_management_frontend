@@ -151,13 +151,14 @@ const OthersExpenseManagement = () => {
                     {/* Others Expense details table */}
                     <div className="col-md-8 mt-3 mt-md-5">
                         <div>
-                            <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addOtherExp">
+                            <Button btnClass="btn bg-gradient-info animate__animated animate__backInRight animate__slow" type="button" data-bs-toggle="modal" data-bs-target="#addOtherExp">
                                 <i className="fas fa-plus me-2"></i>
                                 Add Item
                             </Button>
                             <ExpenseAddModal />
                         </div>
                         {/* table header */}
+                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Others Expenses Management"
                             col1="Name"
@@ -200,9 +201,10 @@ const OthersExpenseManagement = () => {
                             }
                         </InfoTableHeader>
                     </div>
+                    </div>
 
                     {/* overview summary */}
-                    <div className="col-md-4 order-first order-md-last mb-4 mb-md-0">
+                    <div className="col-md-4 order-first order-md-last mb-4 mb-md-0 animate__animated animate__backInDown animate__slow">
                         <OverView overviewHeader="Others Expenses Summary">
                             {othersCost.length <= 0 ? null :
                                 <>

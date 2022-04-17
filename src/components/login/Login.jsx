@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import TextInputField from "../re-usable-component/TextInputField"
-import CheckBox from "../re-usable-component/CheckBox"
+// import CheckBox from "../re-usable-component/CheckBox"
 import Button from '../re-usable-component/Button'
 import axios from "axios"
 import { apiBaseUrl } from "../Utils/constant"
@@ -21,8 +21,8 @@ import { useSelector, useDispatch } from "react-redux"
 import Swal from "sweetalert2"
 import setAuthToken from '../Utils/setAuthToken'
 
-
-const img_signup = './assets/img/curved-images/curved6.jpg'
+// image link
+const img_signup = './assets/img/curved-images/login.png'
 
 
 const Login = () => {
@@ -165,21 +165,23 @@ const Login = () => {
                                                     checked={check}
                                                     labelText="Remember me"
                                                 /> */}
-                                                <Button divClass="text-center" type="submit" btnClass="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</Button>
+                                                <Button divClass="text-center" type="submit" btnClass="btn bg-gradient-info w-100 mt-4 mb-0 animate__animated animate__wobble animate__slow">Sign in</Button>
                                             </form>
                                         </div>
                                         <div className="card-footer text-center pt-0 px-lg-2 px-1">
                                             <p className="mb-4 text-sm mx-auto">
                                                 Don't have an account?
-                                                <Link to="/register" className="text-info text-gradient font-weight-bold"> Sign up</Link>
+                                                <Link to="/register" className="text-info text-gradient font-weight-bold "> Sign up</Link>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                                        <div className="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style={{ backgroundImage: `url(${img_signup})` }}></div>
-                                    </div>
+                                    {/* <div className="oblique position-absolute h-100 d-md-block d-none me-n5 mt-8">
+                                        <div className="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6 img-fluid" style={{ backgroundImage: `url(${img_signup})`, marginLight: '100px', backgroundSize:'65%', backgroundRepeat: 'no-repeat' }}></div>
+                                    </div> */}
+
+                                    <img className="img-fluid mt-8 d-none d-md-block animate__animated animate__pulse animate__infinite animate__slower" style={{marginLeft: 50}} src={img_signup} alt="" />
                                 </div>
                             </div>
                         </div>

@@ -22,13 +22,13 @@ const FeedStatus = () => {
     return (
         <>
             <h6 className="text-sm mb-0 text-uppercase font-weight-bolder">
-                <span className={`badge badge-sm bg-gradient-info`}>{`Total Feed ${TotalFeedBag}`}</span>
+                <span className={`badge badge-sm bg-gradient-info animate__animated animate__backInDown animate__slow`}>{`Total Feed ${TotalFeedBag}`}</span>
             </h6>
             <h6 className="text-sm mb-0 text-uppercase font-weight-bolder mt-2">
-                <span className={`badge badge-sm bg-gradient-danger`}>{`Finish Feed ${totalFinishFeed}`}</span>
+                <span className={`badge badge-sm bg-gradient-danger animate__animated animate__backInLeft animate__slow`}>{`Finish Feed ${totalFinishFeed}`}</span>
             </h6>
             <h6 className="text-sm mb-0 text-uppercase font-weight-bolder mt-2">
-                <span className={`badge badge-sm bg-gradient-warning`}>{`Available Feed ${TotalFeedBag - totalFinishFeed}`}</span>
+                <span className={`badge badge-sm bg-gradient-warning animate__animated animate__backInUp animate__slow`}>{`Available Feed ${TotalFeedBag - totalFinishFeed}`}</span>
             </h6>
         </>
     )

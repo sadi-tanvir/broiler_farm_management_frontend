@@ -76,13 +76,14 @@ const ChicksBuyManagement = () => {
                     {/* chicks buy details table */}
                     <div className="col-md-8 mt-3 mt-md-5">
                         <div>
-                            <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addChicks">
+                            <Button btnClass="btn bg-gradient-info animate__animated animate__backInRight animate__slow" type="button" data-bs-toggle="modal" data-bs-target="#addChicks">
                                 <i className="fas fa-plus me-2"></i>
                                 Add Item
                             </Button>
                             <ChiksAddModal />
                         </div>
                         {/* table header */}
+                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Chicks Management"
                             col1="Company Name"
@@ -114,11 +115,12 @@ const ChicksBuyManagement = () => {
                             }
                         </InfoTableHeader>
                     </div>
+                    </div>
 
 
                     {/* overviewHeader summary when display bigger than small size */}
                     <OverviewChicksBuy
-                        displayState="order-first order-md-last mb-4 mb-md-0"
+                        displayState="order-first order-md-last mb-4 mb-md-0 animate__animated animate__backInDown animate__slow"
                         buyChicken={buyChicken}
                     />
                 </div>

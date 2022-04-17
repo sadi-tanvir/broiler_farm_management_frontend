@@ -135,13 +135,14 @@ const FeedFinishManagement = () => {
                     {/* Feed details table */}
                     <div className="col-md-8 mt-md-3">
                         <div>
-                            <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#finishFeed">
+                            <Button btnClass="btn bg-gradient-info animate__animated animate__backInRight animate__slow" type="button" data-bs-toggle="modal" data-bs-target="#finishFeed">
                                 <i className="fas fa-plus me-2"></i>
                                 Add Item
                             </Button>
                             <FeedFinishAddModal />
                         </div>
                         {/* table header */}
+                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Finish Feed Management"
                             col1="Name"
@@ -180,12 +181,13 @@ const FeedFinishManagement = () => {
                                 )
                             })}
                         </InfoTableHeader>
+                        </div>
                     </div>
 
 
                     {/* overviewHeader summary */}
                     <OverviewFeedFinish
-                        displayState="order-first order-md-last mb-4 mb-md-0"
+                        displayState="order-first order-md-last mb-4 mb-md-0 animate__animated animate__backInDown animate__slow"
                         finishFeed={finishFeed}
                         totalFinishFeed={totalFinishFeed}
                         totalGrowerFinish={totalGrowerFinish}

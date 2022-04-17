@@ -144,13 +144,14 @@ const FeedFinishManagement = () => {
                     {/* death details table */}
                     <div className="col-md-8 mt-md-5">
                         <div>
-                            <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addChicks">
+                            <Button btnClass="btn bg-gradient-info animate__animated animate__backInRight animate__slow" type="button" data-bs-toggle="modal" data-bs-target="#addChicks">
                                 <i className="fas fa-plus me-2"></i>
                                 Add Item
                             </Button>
                             <ChiksDeathAddModal />
                         </div>
                         {/* table header */}
+                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Chicks Death Management"
                             col1="Reason"
@@ -190,11 +191,12 @@ const FeedFinishManagement = () => {
                             })}
                         </InfoTableHeader>
                     </div>
+                    </div>
 
 
                     {/* overviewHeader summary when display bigger than small size */}
                     <OverviewDeathSummary
-                        displayState="order-first order-md-last mb-4 mb-md-0"
+                        displayState="order-first order-md-last mb-4 mb-md-0 animate__animated animate__backInDown animate__slow"
                         deathChickens={deathChickens}
                         totalDeath={totalDeath}
                         totalHitStroke={totalHitStroke}

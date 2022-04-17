@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import classes from "../../../styles/Color.module.css"
 import SalesAddModal from "./age_slaes/SalesAddModal"
 
-const Card = ({ children, iconClass, onClick,data_bs_target }) => {
+const Card = ({ children,iconDiv, iconClass, onClick,data_bs_target }) => {
     return (
         <>
             <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -14,7 +14,7 @@ const Card = ({ children, iconClass, onClick,data_bs_target }) => {
                                     {children}
                                 </div>
                             </div>
-                            <div className="col-4 text-end">
+                            <div className={iconDiv}>
                                 <div data-bs-toggle="modal" data-bs-target={`#${data_bs_target}`} onClick={onClick} className={`icon icon-shape bg-gradient-primary shadow text-center border-radius-md ${classes.iconColor}`}>
                                     <i className={iconClass}></i>
                                 </div>

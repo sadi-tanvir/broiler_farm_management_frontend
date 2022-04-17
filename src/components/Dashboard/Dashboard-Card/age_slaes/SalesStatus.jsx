@@ -46,7 +46,7 @@ const SalesStatus = () => {
                     saleTime.days <= 0 && saleTime.hours <= 0 && saleTime.minutes <= 0 && saleTime.seconds <= 0 ?
                         // already sold
                         <>
-                        <span className={`badge badge-sm bg-gradient-danger text-uppercase`}>
+                        <span className={`badge badge-sm bg-gradient-danger text-uppercase animate__animated animate__backInRight animate__slow`}>
                             {`sold out ${Math.abs(saleTime.days) < 2 ? `today` : `${Math.abs(saleTime.days) < 3 ? `${Math.abs(saleTime.days) - 1} day ago` : `${Math.abs(saleTime.days) - 1} days ago`}`}`}
                         </span>
                         </>

@@ -34,9 +34,9 @@ const NavHeader = () => {
                             <h6 className="font-weight-bolder mb-0 d-flex flex-row justify-content-center">
                                 {/* <i class="fab fa-asymmetrik"></i> */}
                                 <Link to="/">
-                                    <i class={`fab fa-asymmetrik text-danger me-2 ${classes.logoIncon}`}></i>
+                                    <i class={`fab fa-asymmetrik text-danger me-2 ${classes.logoIncon} animate__animated animate__flip animate__slower animate__infinite`}></i>
                                 </Link>
-                                <span onClick={sidebarView} className={`text-info text-uppercase ${classes.logoText}`}>Tanvir Hossain Sadi</span>
+                                <span onClick={sidebarView} className={`text-info text-uppercase ${classes.logoText} animate__animated animate__backInRight animate__slow`}>Tanvir Hossain Sadi</span>
                             </h6>
                         </div>
                     </nav>

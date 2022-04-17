@@ -9,7 +9,7 @@ import { apiBaseUrl } from "../Utils/constant"
 import axios from 'axios'
 import Swal from "sweetalert2"
 
-const signupImg = './assets/img/curved-images/curved14.jpg'
+const signupImg = './assets/img/curved-images/registration-banner.png'
 
 
 const Register = () => {
