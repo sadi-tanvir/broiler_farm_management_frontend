@@ -142,7 +142,6 @@ const FeedFinishManagement = () => {
                             <FeedFinishAddModal />
                         </div>
                         {/* table header */}
-                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Finish Feed Management"
                             col1="Name"
@@ -181,11 +180,10 @@ const FeedFinishManagement = () => {
                                 )
                             })}
                         </InfoTableHeader>
-                        </div>
                     </div>
 
 
-                    {/* overviewHeader summary */}
+                    {/* overview summary */}
                     <OverviewFeedFinish
                         displayState="order-first order-md-last mb-4 mb-md-0 animate__animated animate__backInDown animate__slow"
                         finishFeed={finishFeed}

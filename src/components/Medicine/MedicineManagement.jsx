@@ -135,8 +135,8 @@ const MedicineManagement = () => {
             <div className="container-fluid py-4">
                 {/* medicine overview */}
                 <div className="row mb-4 mb-sm-0 d-flex align-items-center">
-                    <div className="col-md-6 animate__animated animate__fadeInBottomRight animate__slow">
-                        <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addMedicine">
+                    <div className="col-md-6">
+                        <Button btnClass="btn bg-gradient-info animate__animated animate__fadeInBottomRight animate__slow" type="button" data-bs-toggle="modal" data-bs-target="#addMedicine">
                             <i className="fas fa-plus me-2"></i>
                             Add Item
                         </Button>
@@ -165,7 +165,6 @@ const MedicineManagement = () => {
 
 
                 {/* table header */}
-                <div className="animate__animated animate__backInUp animate__slow">
                 <InfoTableHeader
                     header="Medicine Information"
                     col1="Medicine Name & Group"
@@ -210,7 +209,6 @@ const MedicineManagement = () => {
                         )
                     })}
                 </InfoTableHeader>
-                </div>
             </div>
         </>
     )

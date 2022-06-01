@@ -151,7 +151,6 @@ const FeedFinishManagement = () => {
                             <ChiksDeathAddModal />
                         </div>
                         {/* table header */}
-                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Chicks Death Management"
                             col1="Reason"
@@ -190,7 +189,6 @@ const FeedFinishManagement = () => {
                                 )
                             })}
                         </InfoTableHeader>
-                    </div>
                     </div>
 
 

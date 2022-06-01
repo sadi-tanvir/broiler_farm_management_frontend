@@ -12,11 +12,11 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
                 <div className="col-12">
                     <div className="card mb-4">
                         <div className="card-header pb-0 d-flex">
-                            <h3 className={`text-gradient d-none d-sm-inline ${classes.tableHeader} ${classes2.headerColor}`}>{header}</h3>
-                            <h5 className={`text-gradient d-sm-none ${classes.tableHeader} ${classes2.headerColor}`}>{header}</h5>
+                            <h3 className={`text-gradient d-none d-sm-inline ${classes.tableHeader} ${classes2.headerColor} animate__animated animate__backInRight animate__slow`}>{header}</h3>
+                            <h5 className={`text-gradient d-sm-none ${classes.tableHeader} ${classes2.headerColor} animate__animated animate__backInRight animate__slow`}>{header}</h5>
 
-                            <div className={`ms-md-auto pe-md-3 d-flex align-items-center ${classes.searchInp}`}>
-                                {/* {search ? null : */}
+                            <div className={`ms-md-auto pe-md-3 d-flex align-items-center ${classes.searchInp} animate__animated animate__backInLeft animate__slow`}>
+                                {search ? null :
                                     <div className="input-group">
                                         <input
                                             onChange={onChange}
@@ -26,7 +26,7 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
                                         />
                                         <span className="input-group-text text-body"><i className="fas fa-search" aria-hidden="true"></i></span>
                                     </div>
-                                {/* } */}
+                                }
                             </div>
                         </div>
                         <div className="card-body px-0 pt-0 pb-2">
@@ -61,13 +61,3 @@ const InfoTableHeader = ({ children, header, col1, col2, col3, col4, col5, col6,
 }
 
 export default InfoTableHeader
-
-
-// {deathChickens.filter((val) => {
-//     if(search === ''){
-//         return val
-//     }else if(val.reason.toLowerCase().includes(search.toLowerCase())){
-//         return val
-//     }
-// }).map(death => {
-//     return (

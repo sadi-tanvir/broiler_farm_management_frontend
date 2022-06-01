@@ -38,9 +38,10 @@ const UserUpdateModal = ({ modalId, updateUserInfo }) => {
                         divClass="mb-3"
                         type="text"
                         inpClass={classes.modalInput}
-                        placeholder="User Id"
+                        placeholder="Id"
                         onChange={(e) => dispatch({ type: USERS_ID, payload: e.target.value })}
                         value={_id}
+                        // disabled={true}
                     />
                     <TextInputField
                         divClass="mb-3"

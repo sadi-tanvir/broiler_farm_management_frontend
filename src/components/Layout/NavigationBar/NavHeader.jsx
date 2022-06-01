@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 import { Link } from "react-router-dom"
 import { SIDEBAR_OPEN, SIDEBAR_COLLAPSE } from "../../../redux/actions/types"
 import { useDispatch, useSelector } from "react-redux"
-import img from "../../image/Feed.jpg"
 import { apiBaseUrl } from "../../Utils/constant"
 import classes from "../../../styles/Nav.module.css"
 

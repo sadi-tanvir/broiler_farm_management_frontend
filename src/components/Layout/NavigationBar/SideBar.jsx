@@ -6,8 +6,6 @@ import { SIDEBAR_OPEN, SIDEBAR_COLLAPSE, LOGOUT_USER } from "../../../redux/acti
 import { useDispatch, useSelector } from "react-redux"
 import setAuthToken from "../../Utils/setAuthToken"
 import { SvgDashboard, SvgFeed, SvgMedicine, SvgChicken, SvgRTL, SvgProfile, SvgSignin, SvgSignup } from "./SvgLink"
-// img url
-const img_1 = `./assets/img/curved-images/white-curved.jpeg`
 
 
 

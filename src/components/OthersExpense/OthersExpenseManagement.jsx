@@ -157,8 +157,8 @@ const OthersExpenseManagement = () => {
                             </Button>
                             <ExpenseAddModal />
                         </div>
+                        
                         {/* table header */}
-                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Others Expenses Management"
                             col1="Name"
@@ -200,7 +200,6 @@ const OthersExpenseManagement = () => {
                                 })
                             }
                         </InfoTableHeader>
-                    </div>
                     </div>
 
                     {/* overview summary */}

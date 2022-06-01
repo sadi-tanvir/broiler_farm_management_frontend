@@ -83,7 +83,6 @@ const ChicksBuyManagement = () => {
                             <ChiksAddModal />
                         </div>
                         {/* table header */}
-                        <div className="animate__animated animate__backInUp animate__slow">
                         <InfoTableHeader
                             header="Chicks Management"
                             col1="Company Name"
@@ -115,10 +114,9 @@ const ChicksBuyManagement = () => {
                             }
                         </InfoTableHeader>
                     </div>
-                    </div>
 
 
-                    {/* overviewHeader summary when display bigger than small size */}
+                    {/* overview */}
                     <OverviewChicksBuy
                         displayState="order-first order-md-last mb-4 mb-md-0 animate__animated animate__backInDown animate__slow"
                         buyChicken={buyChicken}

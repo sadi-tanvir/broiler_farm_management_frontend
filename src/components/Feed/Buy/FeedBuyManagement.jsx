@@ -131,8 +131,8 @@ const FeedBuyManagement = () => {
         <>
             <div className="container-fluid py-4">
                 <div className="row mb-4 mb-sm-0 d-flex align-items-center">
-                    <div className="col-md-6 animate__animated animate__fadeInBottomRight animate__slow">
-                        <Button btnClass="btn bg-gradient-info" type="button" data-bs-toggle="modal" data-bs-target="#addFeed">
+                    <div className="col-md-6">
+                        <Button btnClass="btn bg-gradient-info  animate__animated animate__fadeInBottomRight animate__slow" type="button" data-bs-toggle="modal" data-bs-target="#addFeed">
                             <i className="fas fa-plus me-2"></i>
                             Add Item
                         </Button>
@@ -157,7 +157,6 @@ const FeedBuyManagement = () => {
                     </div>
                 </div>
                 {/* table header */}
-                <div className="animate__animated animate__backInUp animate__slow">
                 <InfoTableHeader
                     header="Feed Information"
                     col1="Name"
@@ -202,7 +201,6 @@ const FeedBuyManagement = () => {
                     })}
 
                 </InfoTableHeader>
-                </div>
             </div>
         </>
     )
