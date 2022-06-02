@@ -58,7 +58,7 @@ const SideBar = () => {
                     <Link className="navbar-brand m-0" to="#">
                         <h6 className="font-weight-bolder mb-0 d-flex flex-row justify-content-center mt-1">
                             {/* <i class="fab fa-asymmetrik"></i> */}
-                            <i class={`fab fa-asymmetrik text-danger me-2 ${classes2.sideLogoIncon} animate__animated animate__flip animate__slower animate__infinite`}></i>
+                            <i class={`fab fa-asymmetrik text-danger me-2 ${classes2.sideLogoIncon}`}></i>
                             <span className={`text-info text-uppercase ${classes2.sideLogoText}`}>Tanvir Hossain Sadi</span>
                         </h6>
                     </Link>

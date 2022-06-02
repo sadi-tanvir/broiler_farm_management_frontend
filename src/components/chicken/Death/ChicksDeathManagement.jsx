@@ -48,7 +48,7 @@ const FeedFinishManagement = () => {
 
     // hit stroke death
     const hitStroke = deathChickens.filter(chicks => {
-        return chicks.reason === "HIT STROKE"
+        return chicks.reason.toLowerCase() === "hit stroke"
     })
     const hitStrokeArr = hitStroke.map(chicks => {
         return chicks.death
@@ -57,7 +57,7 @@ const FeedFinishManagement = () => {
 
     // Sick death
     const sick = deathChickens.filter(chicks => {
-        return chicks.reason === "SICK"
+        return chicks.reason.toLowerCase() === "sick"
     })
     const sickArr = sick.map(chicks => {
         return chicks.death

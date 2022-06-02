@@ -25,7 +25,7 @@ const AgeStatus = () => {
     return (
         <>
             <h6 className="text-sm mb-0 text-uppercase font-weight-bolder">
-                <span className={`badge badge-sm bg-gradient-info animate__animated animate__heartBeat animate__infinite animate__slower`}>
+                <span className={`badge badge-sm bg-gradient-info animate__animated animate__backInUp animate__slow`}>
                     {`Age ${age} ${age < 2 ? `day` : `days`}`}
                 </span>
             </h6>

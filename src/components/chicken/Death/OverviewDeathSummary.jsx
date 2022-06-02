@@ -14,14 +14,14 @@ const OverviewDeathSummary = ({ displayState, deathChickens, totalDeath, totalHi
                             titleColor="text-info text-gradient"
                             iconClass="fas fa-dove text-danger text-gradient"
                             quantity={`${totalDeath} chicks`}
-                            unitClass="text-secondry"
+                            unitClass="text-secondary"
                         />
                         <OverviewRow
                             title="Hit Stroke"
                             titleColor="text-info text-gradient"
                             iconClass="ni ni-cart text-danger text-gradient"
                             quantity={`${totalHitStroke} chicks`}
-                            unitClass="text-secondry"
+                            unitClass="text-secondary"
                         />
 
                         <OverviewRow
@@ -29,7 +29,7 @@ const OverviewDeathSummary = ({ displayState, deathChickens, totalDeath, totalHi
                             titleColor="text-info text-gradient"
                             iconClass="fas fa-stethoscope text-danger text-gradient"
                             quantity={`${totalSick} chicks`}
-                            unitClass="text-secondry"
+                            unitClass="text-secondary"
                         />
                     </>
                 }
