@@ -80,7 +80,7 @@ const ExpensesOverview = () => {
                         titleColor="text-info"
                         iconClass="fas fa-bookmark text-danger text-gradient"
                         quantity={`${othersCost.length} item`}
-                        amount={totalOthersExp}
+                        amount={`${totalOthersExp} BDT`}
                     />
                 </OverView>
             </div>

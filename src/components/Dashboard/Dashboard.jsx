@@ -2,9 +2,7 @@ import React, { memo, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import DashboardCard from "./Dashboard-Card/DashboardCard"
 import UsersManagement from './UsersManagement/UsersManagement'
-import ExpensesOverview from "./Overview&Chart/ExpensesOverview"
 import { useSelector } from "react-redux"
-import ChartAnalysis from './chartAnalysis/ChartAnalysis'
 import Overview from './Overview&Chart/Overview'
 const Dashboard = () => {
     // redux
@@ -23,9 +21,7 @@ const Dashboard = () => {
     return (
         <>
             <DashboardCard />
-            {/* <ExpensesOverview /> */}
             <Overview />
-            {/* <ChartAnalysis /> */}
             {isAuthenticated && isAdmin ? <UsersManagement /> : null}
         </>
     )
