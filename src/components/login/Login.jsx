@@ -22,7 +22,7 @@ import Swal from "sweetalert2"
 import setAuthToken from '../Utils/setAuthToken'
 
 // image link
-const img_signup = './assets/img/curved-images/login.png'
+const img_signIn = './assets/img/login.png'
 
 
 const Login = () => {
@@ -178,10 +178,10 @@ const Login = () => {
                                 </div>
                                 <div className="col-md-6">
                                     {/* <div className="oblique position-absolute h-100 d-md-block d-none me-n5 mt-8">
-                                        <div className="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6 img-fluid" style={{ backgroundImage: `url(${img_signup})`, marginLight: '100px', backgroundSize:'65%', backgroundRepeat: 'no-repeat' }}></div>
+                                        <div className="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6 img-fluid" style={{ backgroundImage: `url(${img_signIn})`, marginLight: '100px', backgroundSize:'65%', backgroundRepeat: 'no-repeat' }}></div>
                                     </div> */}
 
-                                    <img className="img-fluid mt-8 d-none d-md-block animate__animated animate__pulse animate__infinite animate__slower" style={{marginLeft: 50}} src={img_signup} alt="" />
+                                    <img className="img-fluid mt-8 d-none d-md-block animate__animated animate__pulse animate__infinite animate__slower" style={{marginLeft: 50}} src={img_signIn} alt="" />
                                 </div>
                             </div>
                         </div>
