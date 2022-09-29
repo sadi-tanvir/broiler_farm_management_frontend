@@ -1,14 +1,15 @@
-import { combineReducers } from "redux"
-import adminReducer from "./adminReducer"
-import othersReducer from "./othersReducer"
+import { combineReducers } from "redux";
+import adminReducer from "./adminReducer";
+import othersReducer from "./othersReducer";
 import registerReducer from "./registerReducer";
-import loginReducer from "./loginReducer"
-import feedReducer from "./feedReducer"
-import feedFinishReducer from "./feedFinishReducer"
-import medicineReducer from "./medicineReducer"
-import chicksReducer from "./chicksReducer"
-import chicksDeathReducer from "./chicksDeathReducer"
-import othersExpenseReducer from "./othersExpensesReducer"
+import loginReducer from "./loginReducer";
+import feedReducer from "./feedReducer";
+import feedFinishReducer from "./feedFinishReducer";
+import medicineReducer from "./medicineReducer";
+import chicksReducer from "./chicksReducer";
+import chicksDeathReducer from "./chicksDeathReducer";
+import othersExpenseReducer from "./othersExpensesReducer";
+import salesSummaryReducer from "./salesSummaryReducer";
 
 const rootReducer = combineReducers({
     adminReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     medicineReducer,
     chicksReducer,
     chicksDeathReducer,
-    othersExpenseReducer
+    othersExpenseReducer,
+    salesSummaryReducer
 })
 
 export default rootReducer;

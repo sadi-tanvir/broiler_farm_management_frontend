@@ -141,6 +141,15 @@ const SideBar = () => {
                                     <span className="nav-link-text ms-1">Profile</span>
                                 </Link>
                             </li> : null}
+                        {isAuthenticated ?
+                            <li className="nav-item">
+                                <Link className="nav-link  " to="/business-summary">
+                                    <div className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                        <SvgProfile />
+                                    </div>
+                                    <span className="nav-link-text ms-1">Business Summary</span>
+                                </Link>
+                            </li> : null}
                         {!isAuthenticated ?
                             <li className="nav-item">
                                 <Link className="nav-link" to="/login">

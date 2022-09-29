@@ -10,6 +10,7 @@ import {
   SALES_STATUS,
   OTHERS_COST,
   ALL_USER_DATA,
+  SALES_SUMMARY,
 } from "../actions/types";
 
 const initialState = {
@@ -21,6 +22,7 @@ const initialState = {
   buyMedicine: [],
   sales_status: {},
   othersCost: [],
+  salesSummary: [],
   isAuthenticated: false,
   isAdmin: false,
   users: [],
@@ -88,6 +90,11 @@ const loginReducer = (state = initialState, action) => {
     return {
       ...state,
       othersCost: action.payload,
+    };
+  }else if (action.type === SALES_SUMMARY) {
+    return {
+      ...state,
+      salesSummary: action.payload,
     };
   } else if (action.type === ALL_USER_DATA) {
     return {

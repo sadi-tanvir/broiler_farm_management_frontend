@@ -22,9 +22,11 @@ import {
   SALES_STATUS,
   OTHERS_COST,
   ALL_USER_DATA,
+  SALES_SUMMARY,
 } from "./redux/actions/types"
 import setAuthToken from './components/Utils/setAuthToken'
 import ProfileManagement from "./components/Profile/ProfileManagement"
+import BusinessSummary from './components/BusinessSummary/BusinessSummary'
 
 
 
@@ -46,6 +48,7 @@ const App = () => {
     dispatch({ type: BUY_MEDICINE, payload: JSON.parse(localStorage.buyMedicine) })
     dispatch({ type: SALES_STATUS, payload: JSON.parse(localStorage.sellDate) })
     dispatch({ type: OTHERS_COST, payload: JSON.parse(localStorage.othersCost) })
+    dispatch({ type: SALES_SUMMARY, payload: JSON.parse(localStorage.salesSummary) })
 
     // dispatch()
     setAuthToken(localStorage.token)
@@ -67,6 +70,7 @@ const App = () => {
             <Route path="/chicken-buy" element={<ChicksBuyManagement />} />
             <Route path="/chicken-death" element={<ChicksDeathManagement />} />
             <Route path="/profile" element={<ProfileManagement />} />
+            <Route path="/business-summary" element={<BusinessSummary />} />
             <Route path="/others-expense" element={<OthersExpenseManagement />} />
             {/* <Route path="/*" element={<ErrorPage />} /> it will have to be created */}
           </Routes>

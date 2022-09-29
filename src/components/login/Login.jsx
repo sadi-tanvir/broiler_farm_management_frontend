@@ -15,7 +15,8 @@ import {
     FINISH_FEED,
     BUY_MEDICINE,
     OTHERS_COST,
-    SALES_STATUS
+    SALES_STATUS,
+    SALES_SUMMARY
 } from "../../redux/actions/types"
 import { useSelector, useDispatch } from "react-redux"
 import Swal from "sweetalert2"
@@ -71,8 +72,8 @@ const Login = () => {
             dispatch({ type: FINISH_FEED, payload: res.data.finishFeed })
             dispatch({ type: BUY_MEDICINE, payload: res.data.buyMedicine })
             dispatch({ type: OTHERS_COST, payload: res.data.othersCost })
-            dispatch({ type: OTHERS_COST, payload: res.data.othersCost })
             dispatch({ type: SALES_STATUS, payload: res.data.sales_info })
+            dispatch({ type: SALES_SUMMARY, payload: res.data.salesSummary })
 
 
             // data store to localStorage
@@ -83,11 +84,12 @@ const Login = () => {
             localStorage.setItem('finishFeed', JSON.stringify(res.data.finishFeed))
             localStorage.setItem('buyMedicine', JSON.stringify(res.data.buyMedicine))
             localStorage.setItem('othersCost', JSON.stringify(res.data.othersCost))
+            localStorage.setItem('salesSummary', JSON.stringify(res.data.salesSummary))
             localStorage.setItem('sellDate', JSON.stringify(res.data.sales_info))
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('role', res.data.role)
 
-            // set atuthentication token
+            // set authentication token
             setAuthToken(res.data.token)
 
             // success alert
