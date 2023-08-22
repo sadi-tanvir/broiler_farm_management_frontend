@@ -18,6 +18,7 @@ const FeedBuyAddModal = () => {
     // state
     const [addFeed, setAddFeed] = useState({
         name: "",
+        description:"",
         category: "STARTER",
         bag: "",
         price: "",
@@ -48,10 +49,11 @@ const FeedBuyAddModal = () => {
     const addFeedInfo = (e) => {
         e.preventDefault()
 
-        const { name, category, bag, price } = addFeed;
+        const { name,description, category, bag, price } = addFeed;
 
         axios.put(`${apiBaseUrl}/feed-bringing`, {
             name,
+            description,
             category,
             bag: parseInt(bag),
             price: parseInt(price)
@@ -63,6 +65,7 @@ const FeedBuyAddModal = () => {
             // input field empty
             setAddFeed({
                 name: "",
+                description:"",
                 bag: "",
                 price: "",
             })
@@ -86,6 +89,16 @@ const FeedBuyAddModal = () => {
                             feedName.map(name => <option value={name} />)
                         }
                     </DatalistTextInput>
+
+                    <TextInputField
+                        divClass="mb-3"
+                        type="text"
+                        inpClass={classes.modalInput}
+                        placeholder="description"
+                        name="description"
+                        onChange={handleChange}
+                        value={addFeed.description}
+                    />
 
                     <DatalistTextInput onChange={handleChange} name="category" placeholder="Feed Categories" inpClass={classes.modalInput} >
                         {

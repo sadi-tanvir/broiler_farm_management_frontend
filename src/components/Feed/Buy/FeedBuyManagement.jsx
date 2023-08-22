@@ -20,7 +20,8 @@ import {
     FEED_UPDATE_CATEGORY,
     FEED_UPDATE_BAG,
     FEED_UPDATE_PRICE,
-    FEED_UPDATE_DATE
+    FEED_UPDATE_DATE,
+    FEED_UPDATE_DESCRIPTION
 } from "../../../redux/actions/types"
 
 
@@ -28,7 +29,7 @@ const FeedBuyManagement = () => {
     // redux
     const dispatch = useDispatch()
     const { buyFeed, isAuthenticated } = useSelector(state => state.loginReducer)
-    const { _id, id2, name, category, bag, price, date } = useSelector(state => state.feedReducer)
+    const { _id, id2, name,description, category, bag, price, date } = useSelector(state => state.feedReducer)
 
     // state
     const [searchFeed, setSearchFeed] = useState("")
@@ -75,6 +76,7 @@ const FeedBuyManagement = () => {
         dispatch({ type: FEED_UPDATE_ID, payload: feed._id })
         dispatch({ type: FEED_UPDATE_ID_2, payload: feed.id2 })
         dispatch({ type: FEED_UPDATE_NAME, payload: feed.name })
+        dispatch({ type: FEED_UPDATE_DESCRIPTION, payload: feed.description })
         dispatch({ type: FEED_UPDATE_CATEGORY, payload: feed.category })
         dispatch({ type: FEED_UPDATE_BAG, payload: feed.bag })
         dispatch({ type: FEED_UPDATE_PRICE, payload: feed.price })
@@ -87,6 +89,7 @@ const FeedBuyManagement = () => {
             _id,
             id2,
             name,
+            description,
             category,
             bag: parseInt(bag),
             price: parseInt(price),
@@ -175,6 +178,7 @@ const FeedBuyManagement = () => {
                                 <InfoTableRow
                                     img={feedImg}
                                     col1={feed.name}
+                                    col1_2={feed.description}
                                     col2={feed.category}
                                     col3={`${feed.bag} bag`}
                                     col4={`${feed.price} bdt`}

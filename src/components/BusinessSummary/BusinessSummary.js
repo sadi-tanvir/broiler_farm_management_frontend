@@ -28,6 +28,7 @@ const BusinessSummary = () => {
     const [totalExpense, setTotalExpneses] = useState("")
     const [totalSalesKg, setTotalSalesKg] = useState("")
     const [totalSalesAmount, setTotalSalesAmount] = useState("")
+    const [totalCountOfSales, setTotalCountOfSales] = useState("")
 
     // redux
     const dispatch = useDispatch()
@@ -55,8 +56,8 @@ const BusinessSummary = () => {
             customer,
             description,
             pcs: parseInt(pcs),
-            kg: parseInt(kg),
-            price: parseInt(price),
+            kg: parseFloat(kg),
+            price: parseFloat(price),
             date
         }).then(res => {
             // add to redux & localStorage
@@ -100,25 +101,33 @@ const BusinessSummary = () => {
             })
             const totalSalesAmount = totalSalesArr?.reduce((pre, curr) => pre + curr, 0)
             setTotalSalesAmount(totalSalesAmount)
+
+            // total count of sales
+            const totalCountArr = salesSummary?.map(sales => {
+                return sales.pcs
+            })
+            const totalCountOfSales = totalCountArr?.reduce((pre, curr) => pre + curr, 0)
+            setTotalCountOfSales(totalCountOfSales)
         }
     }, [salesSummary])
-
+    
     return (
         <>
             <div class="row">
                 <div class="col-md-11 mx-auto">
                     <div class="row mt-5">
                         <div class="col-xl-6">
-                            <div class="row">
+                            <div class="row flex-row flex-md-row-reverse">
+                                <Summary
+                                    title="Total sales"
+                                    countOfSell = {`${totalCountOfSales} PCS`}
+                                    summary={totalSalesKg > 0 ? `${totalSalesKg?.toFixed(2)} KG` : null}
+                                    TotalFigure={totalSalesAmount}
+                                    profit={totalSalesAmount - totalExpense}
+                                />
                                 <Summary
                                     title="Total investment"
                                     TotalFigure={totalExpense}
-                                />
-                                <Summary
-                                    title="Total sales"
-                                    summary={totalSalesKg > 0 ? `${totalSalesKg} kg` : null}
-                                    TotalFigure={totalSalesAmount}
-                                    profit={totalSalesAmount - totalExpense}
                                 />
                             </div>
                             <div className="container-fluid py-4">
@@ -169,7 +178,7 @@ const BusinessSummary = () => {
                                                                 col5_color="bg-gradient-danger"
                                                                 modalId={sales.id2}
                                                                 setUpdateInputValue={() => setUpdateInputValue(sales)}
-                                                                deleteItem={() => deleteItem(sales._id)}
+                                                                deleteProduct={() => deleteItem(sales._id)}
                                                             >
 
                                                                 {/* Expense update Modal */}

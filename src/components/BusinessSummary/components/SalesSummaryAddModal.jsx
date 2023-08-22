@@ -39,8 +39,8 @@ const SalesSummaryAddModal = () => {
                 customer,
                 description,
                 pcs: parseInt(pcs),
-                kg: parseInt(kg),
-                price: parseInt(price)
+                kg: parseFloat(kg),
+                price: parseFloat(price)
             }).then(res => {
                 // add to redux & localStorage
                 dispatch({ type: SALES_SUMMARY, payload: res.data.salesSummary })

@@ -2,6 +2,7 @@ import {
     FEED_UPDATE_ID,
     FEED_UPDATE_ID_2,
     FEED_UPDATE_NAME,
+    FEED_UPDATE_DESCRIPTION,
     FEED_UPDATE_CATEGORY,
     FEED_UPDATE_BAG,
     FEED_UPDATE_PRICE,
@@ -15,6 +16,7 @@ const initialState = {
     _id: "",
     id2: "",
     name: "",
+    description: "",
     category: "",
     bag: "",
     price: "",
@@ -38,6 +40,12 @@ const feedReducer = (state = initialState, action) => {
         return {
             ...state,
             name: action.payload
+        }
+    }
+    else if (action.type === FEED_UPDATE_DESCRIPTION) {
+        return {
+            ...state,
+            description: action.payload
         }
     }
     else if (action.type === FEED_UPDATE_CATEGORY) {

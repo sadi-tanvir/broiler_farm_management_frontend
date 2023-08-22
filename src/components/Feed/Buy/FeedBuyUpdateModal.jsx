@@ -8,6 +8,7 @@ import {
     FEED_UPDATE_ID,
     FEED_UPDATE_ID_2,
     FEED_UPDATE_NAME,
+    FEED_UPDATE_DESCRIPTION,
     FEED_UPDATE_CATEGORY,
     FEED_UPDATE_BAG,
     FEED_UPDATE_PRICE,
@@ -21,7 +22,7 @@ import {
 const FeedBuyUpdateModal = ({ feedUpdateFunc, modalId }) => {
     // redux
     const dispatch = useDispatch()
-    const { _id, id2, name, category, bag, price, date } = useSelector(state => state.feedReducer)
+    const { _id, id2, name,description, category, bag, price, date } = useSelector(state => state.feedReducer)
     const { buyFeed } = useSelector(state => state.loginReducer)
 
 
@@ -70,6 +71,16 @@ const FeedBuyUpdateModal = ({ feedUpdateFunc, modalId }) => {
                         name="name"
                         onChange={(e) => dispatch({ type: FEED_UPDATE_NAME, payload: e.target.value })}
                         value={name}
+                    />
+
+                    <TextInputField
+                        divClass="mb-3"
+                        type="text"
+                        inpClass={classes.modalInput}
+                        placeholder="description"
+                        name="description"
+                        onChange={(e) => dispatch({ type: FEED_UPDATE_DESCRIPTION, payload: e.target.value })}
+                        value={description}
                     />
 
                     <DatalistTextInput onChange={(e) => dispatch({ type: FEED_UPDATE_CATEGORY, payload: e.target.value })} name="category" value={category} placeholder="Feed Categories" inpClass={classes.modalInput} >

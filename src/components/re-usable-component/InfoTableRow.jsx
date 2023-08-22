@@ -1,13 +1,18 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 
 
 
 
 const InfoTableRow = (props) => {
-
     const { children, img, col1, col1_2, col2, col3, col4, col5,
-        col6,col2_color, col3_color, col4_color, col5_color, col6_color,
-        modalId, deleteItem, setUpdateInputValue } = props;
+        col6, col2_color, col3_color, col4_color, col5_color, col6_color,
+        modalId, deleteProduct, setUpdateInputValue } = props;
+
+    const [description, setDescription] = useState(false)
+
+    const handleDescription = () => {
+        setDescription(!description)
+    }
 
     return (
         <>
@@ -18,8 +23,13 @@ const InfoTableRow = (props) => {
                             {img && <img src={img} className="avatar avatar-sm me-3" alt="user1" />}
                         </div>
                         <div className="d-flex flex-column justify-content-center">
-                            <h6 className="mb-0 text-sm">{col1}</h6>
-                            {col1_2 && <p  title={col1_2} className="text-xs text-secondary mb-0">{col1_2}</p>}
+                            <h6 onClick={handleDescription} className="mb-0 text-sm">{col1}</h6>
+                            {col1_2 &&
+                                <p onClick={handleDescription} title={col1_2} className="cursor-pointer text-xs text-secondary mb-0cursor-pointer" >
+                                    {description ? col1_2 :
+                                        col1_2.length > 20 ? `${col1_2.slice(0, 20)}...` : col1_2}
+                                </p>
+                            }
                         </div>
                     </div>
                 </td>
@@ -60,7 +70,7 @@ const InfoTableRow = (props) => {
                         {children}
 
                         <i onClick={setUpdateInputValue} data-bs-toggle="modal" data-bs-target={`#${modalId}`} title="edit" style={{ marginRight: 4, fontSize: 15 }} className="fas fa-edit text-info cursor-pointer"></i>
-                        <i onClick={deleteItem} title="delete info" style={{ marginLeft: 7, fontSize: 15 }} className="fas fa-minus-circle text-danger cursor-pointer"></i>
+                        <i onClick={deleteProduct} title="delete info" style={{ marginLeft: 7, fontSize: 15 }} className="fas fa-minus-circle text-danger cursor-pointer"></i>
                     </div>
                 </td>
             </tr>
