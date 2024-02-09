@@ -22,7 +22,7 @@ The **Poultry Farm Management Application** is a comprehensive solution designed
 
 ## Demo
 
-Explore the live application: [Poultry Farm Management](https://tanvirhossainsadi.netlify.app)
+Explore the live application: [Poultry Farm Management](https://farm-management0.netlify.app/)
 
 ## Test Credentials
 
